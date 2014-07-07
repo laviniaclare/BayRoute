@@ -1,0 +1,64 @@
+<html>
+	<head>
+	</head>
+
+	<body>
+		<div id='filters'>
+			
+			<form action='' class='filters' method='POST'>
+				<h2>What do you want to see?</h2>
+				<h4>You can pick several systems to diplay on the map, or just pick the routes you want to see.</h4><br></br>
+				
+				<div id='systems'>
+					<h4><u>Systems</u></h4>
+					Select a system to diplay all lines in that system on the map.<p></p>
+					<input type="checkbox" name="system" value='ACTransit'/>ACTransit
+					<input type="checkbox" name="system" value='WestCat'/>West Cat
+					<input type="checkbox" name="system" value='GG'/>Golden Gate Transit
+					<input type="checkbox" name="system" value='other'/>other
+					<input type="checkbox" name="system" value='other'/>other
+					<input type="checkbox" name="system" value='other'/>other
+					<input type="checkbox" name="system" value='other'/>other
+				</div>
+
+				<div id='bus-routs'>
+					<h4><u> Routs </u></h4>
+					Select lines to show just these lines on the map.<p></p>
+					<div id='system1'>
+						System1:
+						<input type="checkbox" name="line" value='ACTransit72m'/>72m(ACTransit)
+						<input type="checkbox" name="line" value='51A'/>51A
+					</div>
+					<div id='system2'>
+						System2:
+						<input type="checkbox" name="line" value='42'/> 42 (GG)
+						<input type="checkbox" name="line" value='80'/>80
+						<input type="checkbox" name="line" value='2'/> 2
+					</div>
+					<div id='system3'>
+						System3:
+						<input type="checkbox" name="line" value='11'/>11
+						<input type="checkbox" name="line" value='12'/>12
+					</div>
+					
+					
+				</div>
+
+				<div id='times'>
+					<h4><u> Times </u></h4>
+					Only bus lines running during the selected times will be diplayed.<p></p>
+					<select type="dropdownlist" name="time">
+		                <option value=none>Anytime </option>
+		                <option value="day">Daytime
+		                </option>
+		                <option value="late"> After Midnight
+		            </select>
+				</div><br></br>
+
+				<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
+
+			</form>
+
+		</div>	
+	</body>	
+</html>
