@@ -12,11 +12,11 @@ def load_options():
 
 @app.route('/', methods=['POST'])
 def load_map():
-	routes=request.form['route']
+	systems=request.form['system']
 	lines=request.form['line']
 	time=request.form['time']
 	print time
-	print routes
+	print systems
 	print lines
 	return redirect('/map')
 
