@@ -66,64 +66,6 @@
 
 		<script src='http://underscorejs.org/underscore.js'></script>
 
-		<script type='text/javascript'>
-
-
-		// now to make all this work for all the bus systems instead of just one.  Oh boy.
-			var systems=[{
-				id:'ACTransit',
-				lines:[{
-					id:1,
-					name:'blah'
-				}]
-			}]
-
-			var systemCheckboxTemplate=_.template("<input type='checkbox' name='system' id='<%=id%>' value='<%=id%>'/><label for='<%=id%>'><%=id%></label>")
-
-			function renderSystemCheckboxes(systems){
-				return _.map(systems, systemCheckboxTemplate)
-				
-			}
-
-			function enablelines(){
-				l=$( "input[class='ACT']" );
-				l.prop('disabled', false);
-				console.log('I enabled some boxes!');
-			}
-
-			function disablelines(){
-				l=$( "input[class='ACT']" );
-				l.prop('disabled', true);
-				console.log('I disabled some boxes!');
-			};
-
-			function togglelines(e){
-				console.log(e)
-				var $target=$(e.target)
-				var g=$( ".ACT" ).filter( ":checkbox[disabled]" );
-				if(g.length>0){
-					enablelines();
-				} else {
-					disablelines();
-				}
-			};
-
-			function main() {
-				// var systems=['ACTransit','BART','CalTrans','MUNI']
-				// for (var i = 0; i < systems.length; i++) {
-				var systemsContainer = $('div#systems')
-
-				var systemCheckboxesHtml=renderSystemCheckboxes(systems).join('')
-
-				systemsContainer.append(systemCheckboxesHtml)
-
-				var s=$('input[name=system]');
-				
-     			s.on('change', togglelines);
-    		};
-
-			$(main);
-
-		</script>
+		<script type='text/javascript' src="/static/magic.js"></script>
 	</body>	
 </html>
