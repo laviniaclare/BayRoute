@@ -1,5 +1,6 @@
 <html>
 	<head>
+        <link rel="stylesheet" href="/static/css/style.css" />
 	</head>
 
 	<body>
@@ -7,45 +8,50 @@
 			
 			<form action='' class='filters' method='POST'>
 				<h2>What do you want to see?</h2>
-				<h4>You can pick several systems to diplay on the map, or just pick the routes you want to see.</h4><br></br>
-				
+				<h4>You can pick several systems to diplay on the map, or just pick the routes you want to see.</h4>
 				<div id='systems'>
 					<h4><u>Systems</u></h4>
 					Select a system to diplay all lines in that system on the map.<p></p>
-					<input type="checkbox" name="system" value='ACTransit'/>ACTransit
-					<input type="checkbox" name="system" value='WestCat'/>West Cat
-					<input type="checkbox" name="system" value='GG'/>Golden Gate Transit
-					<input type="checkbox" name="system" value='other'/>other
-					<input type="checkbox" name="system" value='other'/>other
-					<input type="checkbox" name="system" value='other'/>other
-					<input type="checkbox" name="system" value='other'/>other
+					<input type="checkbox" name="system" value=none checked=checked/> No full systems
+					<input type="checkbox" name="system" id='ACTransit' value='ACTransit'/>ACTransit
+					<input type="checkbox" name="system" id='MUNI' value='MUNI'/>MUNI
+					<input type="checkbox" name="system" id='CalTrans' value='CalTrans'/>CalTrans
+					<input type="checkbox" name="system" id='BART' value='BART'/>BART
+					<input type="checkbox" name="system" value=none/>other
+					<input type="checkbox" name="system" value=none/>other
+					<input type="checkbox" name="system" value=none/>other
 				</div>
-
-				<div id='bus-routs'>
-					<h4><u> Routs </u></h4>
+				<div id='bus-lines'>
+					<h4><u>Lines</u></h4>
 					Select lines to show just these lines on the map.<p></p>
-					<div id='system1'>
-						System1:
-						<input type="checkbox" name="line" value='ACTransit72m'/>72m(ACTransit)
-						<input type="checkbox" name="line" value='51A'/>51A
+					<input type="checkbox" name="line" value=none checked=checked/> All lines in selected systems.
+					<div id='ACT'><br></br>
+						ACTransit:
+						<input type="checkbox" class='ACT' name="line" value='ACT-72m'/>72m
+						<input type="checkbox" class='ACT' name="line" value='ACT-51A'/>51A
 					</div>
-					<div id='system2'>
-						System2:
-						<input type="checkbox" name="line" value='42'/> 42 (GG)
-						<input type="checkbox" name="line" value='80'/>80
-						<input type="checkbox" name="line" value='2'/> 2
+					<div id='MUNI'><br></br>
+						MUNI:
+						<input type="checkbox" class='MUNI' name="line" value='1'/> 1-California
+						<input type="checkbox" class='MUNI' name="line" value='2'/>2-Clement
+						<input type="checkbox" class='MUNI' name="line" value='3'/> 3-Jackson
 					</div>
-					<div id='system3'>
-						System3:
-						<input type="checkbox" name="line" value='11'/>11
-						<input type="checkbox" name="line" value='12'/>12
+					<div id='CT'><br></br>
+						CalTrans:
+						<input type="checkbox" class='CT'name="line" value='11'/>11
+						<input type="checkbox" class='CT' name="line" value='12'/>12
 					</div>
-					
-					
+					<div id='BART'><br></br>
+						BART:
+						<input type="checkbox" class='BART'name="line" value='red'/>Richmond-sf
+						<input type="checkbox" class='BART' name="line" value='yellow'/>SFO-Pistburge/Bay Point
+						<input type="checkbox" class='BART'name="line" value='orenge'/>Richmond-Freemont
+						<input type="checkbox" class='BART' name="line" value='blue'/>Dublin/Pleasanton-sf
+						<input type="checkbox" class='BART'name="line" value='green'/>Freemont-sf
+					</div>
 				</div>
-
 				<div id='times'>
-					<h4><u> Times </u></h4>
+					<h4><u>Times</u></h4>
 					Only bus lines running during the selected times will be diplayed.<p></p>
 					<select type="dropdownlist" name="time">
 		                <option name='time' value=none>Anytime </option>
@@ -53,12 +59,55 @@
 		                </option>
 		                <option name='time' value="late"> After Midnight
 		            </select>
-				</div><br></br>
+				</div>
+				<div id='button'>
+					<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
+				</div>
 
-				<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
 
 			</form>
 
 		</div>	
+
+		<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+
+		<script type='text/javascript'>
+
+		// now to make all this work for all the bus systems instead of just one.  Oh boy.
+			
+			function enablelines(line-class){
+				l=$( "input[class='ACT']" );
+				l.prop('disabled', false);
+				console.log('I enabled some boxes!');
+			}
+
+			function disablelines(line-class){
+				l=$( "input[class='ACT']" );
+				l.prop('disabled', true);
+				console.log('I disabled some boxes!');
+			};
+
+			function togglelines(){
+				var g=$( ".ACT" ).filter( ":checkbox[disabled]" );
+				if(g.length>0){
+					enablelines();
+				} else {
+					disablelines();
+				}
+			};
+
+			function main() {
+				var systems=['ACTransit','BART','CalTrans','MUNI']
+				for (var i = 0; i < systems.length; i++) {
+					Things[i]
+					var s=$('input#ACTransit');
+				};
+				
+     			s.on('change', togglelines);
+    		};
+
+			$(main);
+
+		</script>
 	</body>	
 </html>

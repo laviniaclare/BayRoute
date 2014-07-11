@@ -1,0 +1,27 @@
+form.filters{
+	background-color: #ddd
+}
+
+div#systems {
+	background-color: pink;
+	width: 25%;
+	/*position:absolute;*/
+}
+
+div#bus-lines{
+	background-color: #FFFFCC;
+	width: 25%;
+/*	margin-left: 26%;
+	position: absolute;*/
+
+}
+
+div#times{
+	background-color: #99CCFF;
+	width: 25%;
+	/*margin-left: 52%;*/
+}
+
+div#button{
+	
+}
