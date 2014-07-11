@@ -13,13 +13,6 @@
 					<h4><u>Systems</u></h4>
 					Select a system to diplay all lines in that system on the map.<p></p>
 					<input type="checkbox" name="system" value=none checked=checked/> No full systems
-					<input type="checkbox" name="system" id='ACTransit' value='ACTransit'/>ACTransit
-					<input type="checkbox" name="system" id='MUNI' value='MUNI'/>MUNI
-					<input type="checkbox" name="system" id='CalTrans' value='CalTrans'/>CalTrans
-					<input type="checkbox" name="system" id='BART' value='BART'/>BART
-					<input type="checkbox" name="system" value=none/>other
-					<input type="checkbox" name="system" value=none/>other
-					<input type="checkbox" name="system" value=none/>other
 				</div>
 				<div id='bus-lines'>
 					<h4><u>Lines</u></h4>
@@ -71,23 +64,42 @@
 
 		<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
 
+		<script src='http://underscorejs.org/underscore.js'></script>
+
 		<script type='text/javascript'>
 
+
 		// now to make all this work for all the bus systems instead of just one.  Oh boy.
-			
-			function enablelines(line-class){
+			var systems=[{
+				id:'ACTransit',
+				lines:[{
+					id:1,
+					name:'blah'
+				}]
+			}]
+
+			var systemCheckboxTemplate=_.template("<input type='checkbox' name='system' id='<%=id%>' value='<%=id%>'/><label for='<%=id%>'><%=id%></label>")
+
+			function renderSystemCheckboxes(systems){
+				return _.map(systems, systemCheckboxTemplate)
+				
+			}
+
+			function enablelines(){
 				l=$( "input[class='ACT']" );
 				l.prop('disabled', false);
 				console.log('I enabled some boxes!');
 			}
 
-			function disablelines(line-class){
+			function disablelines(){
 				l=$( "input[class='ACT']" );
 				l.prop('disabled', true);
 				console.log('I disabled some boxes!');
 			};
 
-			function togglelines(){
+			function togglelines(e){
+				console.log(e)
+				var $target=$(e.target)
 				var g=$( ".ACT" ).filter( ":checkbox[disabled]" );
 				if(g.length>0){
 					enablelines();
@@ -97,11 +109,15 @@
 			};
 
 			function main() {
-				var systems=['ACTransit','BART','CalTrans','MUNI']
-				for (var i = 0; i < systems.length; i++) {
-					Things[i]
-					var s=$('input#ACTransit');
-				};
+				// var systems=['ACTransit','BART','CalTrans','MUNI']
+				// for (var i = 0; i < systems.length; i++) {
+				var systemsContainer = $('div#systems')
+
+				var systemCheckboxesHtml=renderSystemCheckboxes(systems).join('')
+
+				systemsContainer.append(systemCheckboxesHtml)
+
+				var s=$('input[name=system]');
 				
      			s.on('change', togglelines);
     		};
