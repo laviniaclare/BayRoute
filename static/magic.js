@@ -4,7 +4,24 @@ var systems=[{
 					id:1,
 					name:'blah'
 				}]
+
+			},
+			{id:'BART',
+			lines:[{id:2,
+					name:'blah2'
+				}]
 			}]
+
+
+
+
+// [{
+// 	id:'ACTransit',
+// 	lines:[{
+// 		id:1,
+// 		name:'blah'
+// 	}]
+// }]
 
 var systemCheckboxTemplate=_.template("<input type='checkbox' name='system' id='<%=id%>' value='<%=id%>'/><label for='<%=id%>'><%=id%></label>")
 

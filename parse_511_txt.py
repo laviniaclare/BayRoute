@@ -1,24 +1,28 @@
 import os
 import sys
 
-print "This should print at the very least"
-
 def generate_agency_list():
+	system_names=[]
+	system_dict={}
 	transit_data=os.path.join('useful-docs/','GTFSTdata/')
-	print transit_data
 
 	for root, dirs, files in os.walk(transit_data):
 	    for name in files:
 	        path=os.path.join(root, name)
-	        print path
 	        if 'agency.txt' in path:
-	        	print path
 		        agency_data=open(path)
-		        for line in agency_data:
-		        	agency=agency_data.readline().split()
-		        	print agency
-		        #for line in agency:
-				#	print line
+		        agency=agency_data.readlines()
+		        agency_name=agency[1].split(',')[1]
+		        system_names.append(agency_name)
+
+	for system in system_names:
+		system_dict[system]={}
+
+	print system_dict
+
+
+		      
+		       
 
 
 	# for thing in transit_data:
