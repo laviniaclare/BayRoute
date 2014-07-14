@@ -15,3 +15,10 @@ from sqlalchemy.orm import relationship, backref
 # Base.query = Session.query_property()
 
 ####Classes got here (Do I need classes?  What are they? Line, System, et?)
+
+# class System(Base):
+# 	__tablename__='systems'
+
+
+# class Lines(Base):
+# 	__tablename__='lines'
