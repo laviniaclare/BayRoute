@@ -1,25 +1,47 @@
 import os
 import sys
+import re
 
 def generate_agency_list():
 	system_names=[]
-	system_dict={}
+	system_dicts_list=[]
 	transit_data=os.path.join('useful-docs/','GTFSTdata/')
 
 	for root, dirs, files in os.walk(transit_data):
 	    for name in files:
 	        path=os.path.join(root, name)
 	        if 'agency.txt' in path:
+	        	agency_dict={}
 		        agency_data=open(path)
 		        agency=agency_data.readlines()
 		        agency_name=agency[1].split(',')[1]
+		        
 		        system_names.append(agency_name)
+		        agency_dict['lines']=[{}]
+		        agency_dict['id']=agency_name
+		        system_dicts_list.append(agency_dict)
 
-	for system in system_names:
-		system_dict[system]={}
 
-	print system_dict
 
+	return system_dicts_list
+
+
+def get_agency_files():
+	system_names=[]
+	system_dicts_list=[]
+	transit_data=os.path.join('useful-docs/','GTFSTdata/')
+
+	print "cat gtfs_SQL_importer/src/gtfs_tables.sqlite \\"
+	for root, dirs, files in os.walk(transit_data):
+	    for name in dirs:
+	    	path=os.path.join(root, name)
+	        m = re.search('GTFSTransitData_([A-Z0-9]{2})_.*', name)
+	        agency_name = m.group(1)
+	        agency_query =  '<(python gtfs_SQL_importer/src/import_gtfs_to_sql.py %s nocopy %s) \\' % (path, agency_name)
+	        print agency_query
+        
+	print "| sqlite3 Test.db"
+get_agency_files()
 
 		      
 		       
@@ -68,4 +90,4 @@ def generate_agency_list():
 	# 		for line in agency:
 	# 			print row[1]
 
-generate_agency_list()
+

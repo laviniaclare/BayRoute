@@ -1,16 +1,37 @@
-var systems=[{
-				id:'ACTransit',
-				lines:[{
-					id:1,
-					name:'blah'
-				}]
-
-			},
-			{id:'BART',
-			lines:[{id:2,
-					name:'blah2'
-				}]
-			}]
+var systems=[{'lines': [{}], id: 'TriDelta'}, 
+{'lines': [{}], id: 'AB'}, 
+{'lines': [{}], 'id': 'AC Transit'}, 
+{'lines': [{}], 'id': 'AM'}, 
+{'lines': [{}], 'id': 'AT'}, 
+{'lines': [{}], 'id': 'AY'}, 
+{'lines': [{}], 'id': 'BART'}, 
+{'lines': [{}], 'id': 'BG'}, 
+{'lines': [{}], 'id': 'CC'}, 
+{'lines': [{}], 'id': 'CE'}, 
+{'lines': [{}], 'id': 'Caltrain'}, 
+{'lines': [{}], 'id': 'Dumbarton Express'}, 
+{'lines': [{}], 'id': 'EM'}, 
+{'lines': [{}], id: 'FS'}, 
+{'lines': [{}], 'id': 'GF'}, 
+{'lines': [{}], 'id': 'Golden Gate Transit'}, 
+{'lines': [{}], 'id': 'HF'}, 
+{'lines': [{}], 'id': 'Marin Transit'}, 
+{'lines': [{}], 'id': 'MS'}, 
+{'lines': [{}], 'id': 'PE'}, 
+{'lines': [{}], 'id': 'RV'}, 
+{'lines': [{}], 'id': 'SB'}, 
+{'lines': [{}], 'id': 'VTA'}, 
+{'lines': [{}], 'id': 'SF-MUNI'}, 
+{'lines': [{}], 'id': 'SamTrans'}, 
+{'lines': [{}], 'id': 'SO'}, 
+{'lines': [{}], 'id': 'SR'}, 
+{'lines': [{}], 'id': 'ST'}, 
+{'lines': [{}], 'id': 'UC'}, 
+{'lines': [{}], 'id': 'VC'}, 
+{'lines': [{}], 'id': 'Vine (Napa County)'}, 
+{'lines': [{}], 'id': 'WestCAT'}, 
+{'lines': [{}], 'id': 'WH'}, 
+{'lines': [{}], 'id': 'YV'}]
 
 
 
