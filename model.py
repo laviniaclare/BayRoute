@@ -50,7 +50,7 @@ class Route(Base):
 
 class Trip(Base):
 	__tablename__='gtfs_trips'
-	trip_id=Column(integer, primary_key=True)
+	trip_id=Column(Integer, primary_key=True)
 	service_id= Column(Integer, nullable=True)
 	trip_headsign=Column(String(10), nullable=True)
 	direction_id=Column(Integer, nullable=True)
@@ -64,20 +64,21 @@ class Trip(Base):
 	
 
 
-class Stop_Time(Base):
-	__tablename__='gtfs_stop_times'
-	id = Column(Integer, primary_key=True)
-	trip_id = Column(Integer, ForeignKey('trips.id'))
-	stop_id = Column(Integer, ForeignKey('stops.id'))
-	stop_sequence=Column(Integer)
-	arrival_time=Column(String(30), nullable=True)
-	departure_time=Column(String(30), nullable=True)
+# class Stop_Time(Base):
+# 	__tablename__='gtfs_stop_times'
+# 	trip_id = Column(Integer, ForeignKey('trips.id'))
+# 	stop_id = Column(Integer, ForeignKey('stops.id'))
+# 	stop_sequence=Column(Integer)
+# 	arrival_time=Column(String(30), nullable=True)
+# 	departure_time=Column(String(30), nullable=True)
 
-	trip = relationship("Trip",
-		backref=backref("stop_times", order_by=id))
+# 	trip = relationship("Trip",
+# 		backref=backref("stop_times", order_by=id))
 
-	stop = relationship("Stop",
-		backref=backref("stop_times", order_by=id))
+# 	stop = relationship("Stop",
+# 		backref=backref("stop_times", order_by=id))
+
+	
 
 
 
@@ -95,8 +96,9 @@ class Stop(Base):
 
 
 class Calender(Base):
-	__tablename__=('calender')
-	service_id=Column(Integer, ForeignKey('trips.service_id'))
+	__tablename__=('gtfs_calender')
+
+	service_id=Column(Integer, primary_key=True)
 	monday=Column(Integer)
 	tuesday=Column(Integer)
 	wednesday=Column(Integer)
@@ -111,7 +113,9 @@ class Calender(Base):
 		backref=backref("calender", order_by=id))
 
 class Fair_attributes(Base):
-	pass
-	#fare_id,price,currency_type,payment_method,transfers
-
-
+	__tablename__='gtfs_fair_attributes'
+	fare_id=Column(Integer, primary_key=True)
+	price=Column(Integer)
+	currency_type=Column(String(10))
+	payment_method=Column(Integer)
+	transfers=Column(Integer)
