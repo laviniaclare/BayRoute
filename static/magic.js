@@ -36,12 +36,12 @@ var systems=[{'lines': [{}], id: 'TriDelta'},
 
 
 var systemSortNametoLongNameDict={
-'3D':'Tridelta Transit'
-'AB':'BART'
-'AC':'AC Transit'
-AM|http://www.capitolcorridor.org
-AT|http://www.angelislandferry.com
-AY|http://www.ridethevine.com/american-canyon-transit
+'3D':'Tridelta Transit',
+'AB':'BART',
+'AC':'AC Transit',
+'AM':'Capitol Corridor',
+'AT':'Angel Island Ferry',
+'AY':'American Canyon Transit'
 BA|http://www.bart.gov
 BG|http://www.blueandgoldfleet.com/
 CC|http://www.cccta.org/

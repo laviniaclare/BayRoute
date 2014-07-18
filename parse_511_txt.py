@@ -42,43 +42,6 @@ def get_agency_files():
         
 	print "| sqlite3 Test.db"
 
-Systems_shortname_to_longname={
-'3D':'Tridelta Transit',
-'AB':'AirBART',
-'AC':'AC Transit',
-'AM':'Capitol Corridor',
-'AT':'Angel Island Ferry',
-'AY':'American Canyon Transit (Vine Transit)',
-'BA':'BART',
-'BG':'Blue and Gold Fleet',
-'CC':'County Connection',
-'CE':'Ace Rail',
-'CT':'CalTrain',
-'DE':'Dumbarton Express',
-'EM':'Emerygoround',
-'FS':'FAST Transit',
-'GF':'Golden Gate Ferry',
-'GG':'Golden Gate Transit',
-'HF':'Alcatraz Cruises',
-'MA':'Marin Transit',
-'MS':'Marguerite Shuttle (Stanford)',
-'PE':'Petaluma Transit',
-'RV':'Delta Breeze Transit (Rio Vista City)',
-'SB':'San Francisco Bay Ferry',
-'SC':'Vally Transportation Authority',
-'SF':'SFMTA (Muni)',
-'SM':'SamTrans',
-'SO':'Sonoma County Transit',
-'SR':'CityBus (Santa Rosa)',
-'ST':'Soltrans',
-'UC':'Union City Transit',
-'VC':'City Coach',
-'VN':'The Vine',
-'WC':'WestCat',
-'WH':'Wheels Bus',
-'YV':'Yountville Trolley (Vine Transit)'
-
-}
 
 		      
 		       
