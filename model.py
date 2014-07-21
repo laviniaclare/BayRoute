@@ -21,14 +21,17 @@ Base.query = Session.query_property()
 
 class Agency(Base):
 	__tablename__='gtfs_agency'
-	agency_id = Column(Integer, primary_key = True)
-	agency_name = Column(String(30), nullable = True)
-	agency_url = Column(String(64), nullable = True)
-	agency_timezone = Column(String(30), nullable=True)
-	agency_lang = Column(String(10), nullable=True)
+	agency_id = Column(String(30), primary_key = True)
+	agency_name = Column(String(30), nullable=False)
+	agency_url = Column(String(64), nullable = False)
+	agency_timezone = Column(String(30), nullable=False)
+	agency_lang = Column(String(10), nullable=False)
 	agency_phone = Column(String(20), nullable=True)
 
 def get_agency_routes(agency):
+	pass
+
+def get_all_agencies():
 	pass
 
 
@@ -40,10 +43,13 @@ class Route(Base):
 	route_short_name = Column(String(10), nullable = True)
 	route_long_name = Column(String(30), nullable=True)
 	route_type = Column(Integer, nullable=True)
-	agency_id=Column(Integer, ForeignKey('agencys.id'))
+	agency_id=Column(Integer, ForeignKey('agencys.agency_id'))
 
 	agency = relationship("Agency",
-		backref=backref("routes", order_by=id))
+		backref=backref("gtfs_routes", order_by=id))
+
+def get_route_stops(route):
+	pass
 
 	
 
@@ -54,33 +60,30 @@ class Trip(Base):
 	service_id= Column(Integer, nullable=True)
 	trip_headsign=Column(String(10), nullable=True)
 	direction_id=Column(Integer, nullable=True)
-	route_id=Column(Integer, ForeignKey('routes.id'))
+	route_id=Column(Integer, ForeignKey('routes.route_id'))
 	direction_id=Column(Integer, nullable=True)
 
 
 	route = relationship("Route",
-		backref=backref("trips", order_by=id))
+		backref=backref("gtfs_trips", order_by=id))
 
 	
 
 
 class Stop_Time(Base):
 	__tablename__='gtfs_stop_times'
-	trip_id = Column(Integer, ForeignKey('trips.id'))
-	stop_id = Column(Integer, ForeignKey('stops.id'))
-	stop_sequence=Column(Integer, primary_key=True)
-	arrival_time=Column(String(30), primary_key=True)
-	departure_time=Column(String(30), primary_key=True)
+	trip_id = Column(Integer, ForeignKey('trips.trip_id'), primary_key=True)
+	stop_id = Column(Integer, ForeignKey('stops.stop_id'), primary_key=True)
+	stop_sequence=Column(Integer)
+	arrival_time=Column(String(30))
+	departure_time=Column(String(30))
 
 	trip = relationship("Trip",
-		backref=backref("stop_times", order_by=id))
+		backref=backref("gtfs_stop_times", order_by=id))
 
 	stop = relationship("Stop",
-		backref=backref("stop_times", order_by=id))
-
+		backref=backref("gtfds_stop_times", order_by=id))
 	
-
-
 
 
 class Stop(Base):
@@ -110,7 +113,7 @@ class Calender(Base):
 	end_date=Column(Integer)
 
 	stop = relationship("Trip",
-		backref=backref("calender", order_by=id))
+		backref=backref("gtfs_calender", order_by=id))
 
 class Fair_attributes(Base):
 	__tablename__='gtfs_fair_attributes'
