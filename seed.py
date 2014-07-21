@@ -11,6 +11,9 @@ from sqlalchemy import DateTime
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 
+from alembic import op
+import sqlalchemy.dialects.postgresql.json as json
+
 Systems_shortname_to_longname={
 '3D':'Tridelta Transit',
 'AB':'AirBART',
@@ -48,8 +51,11 @@ Systems_shortname_to_longname={
 'YV':'Yountville Trolley (Vine Transit)'
 }
 
-def fix_lingnames():
-	names=model.session.query(model.Agency).all()
-	for route_name in gtfs_agency:
-		if name in Systems_shortname_to_longname:
-			name=Systems_shortname_to_longname[name]
+# def fix_lingnames():
+# 	names=model.session.query(model.Agency).all()
+# 	for route_name in gtfs_agency:
+# 		if name in Systems_shortname_to_longname:
+# 			name=Systems_shortname_to_longname[name]
+
+
+

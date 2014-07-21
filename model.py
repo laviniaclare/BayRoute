@@ -64,19 +64,19 @@ class Trip(Base):
 	
 
 
-# class Stop_Time(Base):
-# 	__tablename__='gtfs_stop_times'
-# 	trip_id = Column(Integer, ForeignKey('trips.id'))
-# 	stop_id = Column(Integer, ForeignKey('stops.id'))
-# 	stop_sequence=Column(Integer)
-# 	arrival_time=Column(String(30), nullable=True)
-# 	departure_time=Column(String(30), nullable=True)
+class Stop_Time(Base):
+	__tablename__='gtfs_stop_times'
+	trip_id = Column(Integer, ForeignKey('trips.id'))
+	stop_id = Column(Integer, ForeignKey('stops.id'))
+	stop_sequence=Column(Integer, primary_key=True)
+	arrival_time=Column(String(30), primary_key=True)
+	departure_time=Column(String(30), primary_key=True)
 
-# 	trip = relationship("Trip",
-# 		backref=backref("stop_times", order_by=id))
+	trip = relationship("Trip",
+		backref=backref("stop_times", order_by=id))
 
-# 	stop = relationship("Stop",
-# 		backref=backref("stop_times", order_by=id))
+	stop = relationship("Stop",
+		backref=backref("stop_times", order_by=id))
 
 	
 
