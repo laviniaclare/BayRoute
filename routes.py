@@ -7,16 +7,18 @@ app.secret_key = '\xdd$j\x8dX\x19\xe69\x08"t/\'K\x1c\x1di"\'C\x8d*(\xd2'
 ####Routes and stuff go here (@app.route())####
 @app.route('/', methods=['GET'])
 def load_options():
-	return render_template('options-page.html')
+	agencies_list=model.get_all_agencies()
+	agency_names=model.get_agency_name_dict()
+	return render_template('options-page.html', agencies_list=agencies_list, agency_names=agency_names)
 
 
 @app.route('/', methods=['POST'])
 def load_map():
-	systems=request.form['system']
+	# systems=request.form['system']
 	lines=request.form['line']
 	time=request.form['time']
 	print time
-	print systems
+	# print systems
 	print lines
 	return redirect('/map')
 

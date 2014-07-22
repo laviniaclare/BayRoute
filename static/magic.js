@@ -44,10 +44,10 @@ var systems=[{'lines': [{}], id: 'TriDelta'},
 // 	}]
 // }]
 
-var systemCheckboxTemplate=_.template("<input type='checkbox' name='system' id='<%=id%>' value='<%=id%>'/><label for='<%=id%>'><%=id%></label>")
+// var systemCheckboxTemplate=_.template("<input type='checkbox' name='system' id='<%=id%>' value='<%=id%>'/><label for='<%=id%>'><%=id%></label>")
 
-function renderSystemCheckboxes(systems){
-	return _.map(systems, systemCheckboxTemplate)
+// function renderSystemCheckboxes(systems){
+// 	return _.map(systems, systemCheckboxTemplate)
 	
 }
 
@@ -76,11 +76,11 @@ function togglelines(e){
 
 function main() {
 
-	var systemsContainer = $('div#systems')
+	// var systemsContainer = $('div#systems')
 
-	var systemCheckboxesHtml=renderSystemCheckboxes(systems).join('')
+	// var systemCheckboxesHtml=renderSystemCheckboxes(systems).join('')
 
-	systemsContainer.append(systemCheckboxesHtml)
+	// systemsContainer.append(systemCheckboxesHtml)
 
 	var s=$('input[name=system]');
 	

@@ -32,9 +32,48 @@ def get_agency_routes(agency):
 	pass
 
 def get_all_agencies():
-	pass
+	all_agencies=Session.query(Agency).all()
+	return all_agencies
 
-
+def get_agency_name_dict():
+	agencies_id_to_name={
+		'3D':'Tridelta Transit',
+		'AB':'AirBART',
+		'AC':'AC Transit',
+		'AM':'Capitol Corridor',
+		'AT':'Angel Island Ferry',
+		'AY':'American Canyon Transit (Vine Transit)',
+		'BA':'BART',
+		'BG':'Blue and Gold Fleet',
+		'CC':'County Connection',
+		'CE':'Ace Rail',
+		'CT':'CalTrain',
+		'DE':'Dumbarton Express',
+		'EM':'Emerygoround',
+		'FS':'FAST Transit',
+		'GF':'Golden Gate Ferry',
+		'GG':'Golden Gate Transit',
+		'HF':'Alcatraz Cruises',
+		'MA':'Marin Transit',
+		'MS':'Marguerite Shuttle (Stanford)',
+		'PE':'Petaluma Transit',
+		'RV':'Delta Breeze Transit (Rio Vista City)',
+		'SB':'San Francisco Bay Ferry',
+		'SC':'Vally Transportation Authority',
+		'SF':'SFMTA (Muni)',
+		'SM':'SamTrans',
+		'SO':'Sonoma County Transit',
+		'SR':'CityBus (Santa Rosa)',
+		'ST':'Soltrans',
+		'UC':'Union City Transit',
+		'VC':'City Coach',
+		'VN':'The Vine',
+		'WC':'WestCat',
+		'WH':'Wheels Bus',
+		'YV':'Yountville Trolley (Vine Transit)'
+		}
+	# name=agencies_id_to_name[agency_id]
+	return agencies_id_to_name
 
 
 class Route(Base):
