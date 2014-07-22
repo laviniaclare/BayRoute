@@ -9,49 +9,51 @@
 			<form action='' class='filters' method='POST'>
 				<h2>What do you want to see?</h2>
 				<h4>You can pick several systems to diplay on the map, or just pick the routes you want to see.</h4>
-				<div id='systems'>
-					<h4><u>Systems</u></h4>
-					Select a system to diplay all lines in that system on the map.<p></p>
-					<input type="checkbox" name="system" value=none checked=checked/> No full systems
-				</div>
-				<div id='bus-lines'>
-					<h4><u>Lines</u></h4>
-					Select lines to show just these lines on the map.<p></p>
-					<input type="checkbox" name="line" value=none checked=checked/> All lines in selected systems.
-					<div id='ACT'><br></br>
-						ACTransit:
-						<input type="checkbox" class='ACT' name="line" value='ACT-72m'/>72m
-						<input type="checkbox" class='ACT' name="line" value='ACT-51A'/>51A
+				<div id='questions'>
+					<div id='systems'>
+						<h4><u>Systems</u></h4>
+						Select a system to diplay all lines in that system on the map.<p></p>
+						<input type="checkbox" name="system" value=none checked=checked/> No full systems
 					</div>
-					<div id='MUNI'><br></br>
-						MUNI:
-						<input type="checkbox" class='MUNI' name="line" value='1'/> 1-California
-						<input type="checkbox" class='MUNI' name="line" value='2'/>2-Clement
-						<input type="checkbox" class='MUNI' name="line" value='3'/> 3-Jackson
+					<div id='bus-lines'>
+						<h4><u>Lines</u></h4>
+						Select lines to show just these lines on the map.<p></p>
+						<input type="checkbox" name="line" value=none checked=checked/> All lines in selected systems.
+						<div id='ACT'><br></br>
+							ACTransit:
+							<input type="checkbox" class='ACT' name="line" value='ACT-72m'/>72m
+							<input type="checkbox" class='ACT' name="line" value='ACT-51A'/>51A
+						</div>
+						<div id='MUNI'><br></br>
+							MUNI:
+							<input type="checkbox" class='MUNI' name="line" value='1'/> 1-California
+							<input type="checkbox" class='MUNI' name="line" value='2'/>2-Clement
+							<input type="checkbox" class='MUNI' name="line" value='3'/> 3-Jackson
+						</div>
+						<div id='CT'><br></br>
+							CalTrans:
+							<input type="checkbox" class='CT'name="line" value='11'/>11
+							<input type="checkbox" class='CT' name="line" value='12'/>12
+						</div>
+						<div id='BART'><br></br>
+							BART:
+							<input type="checkbox" class='BART'name="line" value='red'/>Richmond-sf
+							<input type="checkbox" class='BART' name="line" value='yellow'/>SFO-Pistburge/Bay Point
+							<input type="checkbox" class='BART'name="line" value='orenge'/>Richmond-Freemont
+							<input type="checkbox" class='BART' name="line" value='blue'/>Dublin/Pleasanton-sf
+							<input type="checkbox" class='BART'name="line" value='green'/>Freemont-sf
+						</div>
 					</div>
-					<div id='CT'><br></br>
-						CalTrans:
-						<input type="checkbox" class='CT'name="line" value='11'/>11
-						<input type="checkbox" class='CT' name="line" value='12'/>12
+					<div id='times'>
+						<h4><u>Times</u></h4>
+						Only bus lines running during the selected times will be diplayed.<p></p>
+						<select type="dropdownlist" name="time">
+			                <option name='time' value=none>Anytime </option>
+			                <option name='time' value="day">Daytime
+			                </option>
+			                <option name='time' value="late"> After Midnight
+			            </select>
 					</div>
-					<div id='BART'><br></br>
-						BART:
-						<input type="checkbox" class='BART'name="line" value='red'/>Richmond-sf
-						<input type="checkbox" class='BART' name="line" value='yellow'/>SFO-Pistburge/Bay Point
-						<input type="checkbox" class='BART'name="line" value='orenge'/>Richmond-Freemont
-						<input type="checkbox" class='BART' name="line" value='blue'/>Dublin/Pleasanton-sf
-						<input type="checkbox" class='BART'name="line" value='green'/>Freemont-sf
-					</div>
-				</div>
-				<div id='times'>
-					<h4><u>Times</u></h4>
-					Only bus lines running during the selected times will be diplayed.<p></p>
-					<select type="dropdownlist" name="time">
-		                <option name='time' value=none>Anytime </option>
-		                <option name='time' value="day">Daytime
-		                </option>
-		                <option name='time' value="late"> After Midnight
-		            </select>
 				</div>
 				<div id='button'>
 					<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>

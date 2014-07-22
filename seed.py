@@ -14,7 +14,8 @@ from sqlalchemy.orm import relationship, backref
 from alembic import op
 import sqlalchemy.dialects.postgresql.json as json
 
-Systems_shortname_to_longname={
+
+Systems_short_to_long={
 '3D':'Tridelta Transit',
 'AB':'AirBART',
 'AC':'AC Transit',

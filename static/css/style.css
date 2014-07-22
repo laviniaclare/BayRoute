@@ -1,5 +1,6 @@
 form.filters{
 	background-color: #ddd
+	
 }
 
 div#systems {
@@ -11,15 +12,15 @@ div#systems {
 div#bus-lines{
 	background-color: #FFFFCC;
 	width: 25%;
-/*	margin-left: 26%;
+	/*margin-left: 26%;
 	position: absolute;*/
 
 }
 
 div#times{
 	background-color: #99CCFF;
-	width: 25%;
-	/*margin-left: 52%;*/
+	/*width: 25%;
+	margin-left: 52%;*/
 }
 
 div#button{
