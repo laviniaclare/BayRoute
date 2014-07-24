@@ -15,7 +15,7 @@
 					Select a system to diplay all lines in that system on the map.<p></p>
 					
 					{% for agency in agencies_list %}
-					<input type="checkbox" name="system" value='{{ agency.agency_id }}'/>{{ agency_names[agency.agency_id] }}
+					<input type="checkbox" name="system" value='{{ agency.agency_id }}'/>{{ agency_names[agency.agency_id] }}<br></br>
 					
 					{% endfor %}
 					<input type="checkbox" name="system" value=none checked=checked/> No full systems
@@ -25,7 +25,14 @@
 					<h4><u>Lines</u></h4>
 					Select lines to show just these lines on the map.<p></p>
 					<input type="checkbox" name="line" value=none checked=checked/> All lines in selected systems.
-					<div id='ACT'><br></br>
+					{% for agency in agencies_list %}
+					<div id='{{ agency_names[agency.agency_id] }}'>
+						{{ agency_names[agency.agency_id] }}:<br></br>
+						{% for route in agency_routes[agency.agency_id] %}
+							<input type="checkbox" class='{{ agency_names[agency.agency_id] }}' name="route" value="{{ agency_routes[agency.agency_id][route]['id'] }}"/>{{ agency_routes[agency.agency_id][route]['name'] }}<br></br>
+						{% endfor %}
+					{% endfor %}		
+					<!-- <div id='ACT'><br></br>
 						ACTransit:
 						<input type="checkbox" class='ACT' name="line" value='ACT-72m'/>72m
 						<input type="checkbox" class='ACT' name="line" value='ACT-51A'/>51A
@@ -48,7 +55,7 @@
 						<input type="checkbox" class='BART'name="line" value='orenge'/>Richmond-Freemont
 						<input type="checkbox" class='BART' name="line" value='blue'/>Dublin/Pleasanton-sf
 						<input type="checkbox" class='BART'name="line" value='green'/>Freemont-sf
-					</div>
+					</div> -->
 				</div>
 				
 				<div id='times'>

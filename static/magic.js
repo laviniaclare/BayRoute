@@ -49,13 +49,13 @@ var systems=[{'lines': [{}], id: 'TriDelta'},
 // function renderSystemCheckboxes(systems){
 // 	return _.map(systems, systemCheckboxTemplate)
 	
-}
+// }
 
 function unchecklines(){
 	l=$( "input[class='ACT']" );
 	l.prop('checked', false);
 	console.log('I unchecked some boxes!');
-}
+};
 
 function checklines(){
 	l=$( "input[class='ACT']" );
