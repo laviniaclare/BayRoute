@@ -3,13 +3,13 @@ form.filters{
 	
 }
 
-div#systems {
+div#agencies {
 	background-color: pink;
 	width: 25%;
 	/*position:absolute;*/
 }
 
-div#bus-lines{
+div#bus-routes{
 	background-color: #FFFFCC;
 	width: 25%;
 	/*margin-left: 26%;

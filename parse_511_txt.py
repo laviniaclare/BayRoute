@@ -26,7 +26,7 @@ def generate_agency_list():
 	return system_dicts_list
 
 
-def get_agency_files():
+def get_agency_files_sqlite():
 	system_names=[]
 	system_dicts_list=[]
 	transit_data=os.path.join('useful-docs/','GTFSTdata/')
@@ -42,4 +42,33 @@ def get_agency_files():
         
 	print "| sqlite3 Test.db"
 
+	# cat gtfs_tables.sqlite \
+ #    <(python import_gtfs_to_sql.py path/to/gtfs/data/directory nocopy) \
+ #    | sqlite3 ANewDatabase.db
 
+
+
+	#    cat gtfs_tables.sql \
+ #    <(python import_gtfs_to_sql.py path/to/gtfs/data/directory) \
+ #    gtfs_tables_makeindexes.sql \
+ #    vacuumer.sql \
+ #    | psql mydbname myusername
+
+
+def get_agency_files_psql():
+	system_names=[]
+	system_dicts_list=[]
+	transit_data=os.path.join('useful-docs/','GTFSTdata/')
+
+	print "cat gtfs_SQL_importer/src/gtfs_tables.sql \\"
+	for root, dirs, files in os.walk(transit_data):
+	    for name in dirs:
+	    	path=os.path.join(root, name)
+	        m = re.search('GTFSTransitData_([A-Z0-9]{2})_.*', name)
+	        agency_name = m.group(1)
+	        agency_query =  '<(python gtfs_SQL_importer/src/import_gtfs_to_sql.py %s %s) \\' % (path, agency_name)
+	        print agency_query
+	print "gtfs_SQL_importer/src/gtfs_tables_makeindexes.sql \\gtfs_SQL_importer/src/vacuumer.sql \\"        
+	print "| psql transit"
+
+get_agency_files_psql()

@@ -1,3 +1,4 @@
+import os
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, Float
@@ -8,7 +9,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 
-ENGINE = create_engine("sqlite:///transit.db", echo = False)
+ENGINE = create_engine(os.environ.get("DATABASE_URL", "sqlite:///transit.db"), echo = False)
 Session = scoped_session(sessionmaker(bind = ENGINE, autocommit = False, autoflush = False))
 
 Base = declarative_base()
