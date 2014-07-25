@@ -2714,6 +2714,21 @@ def get_route_trips(route_id):
 	trips=Session.query(Trip).filter_by(route_id=route_id).all()
 	return trips
 
+def get_all_stops_on_route(route_id):
+	trips=get_route_trips(route_id)       #<--- outputs list of trip objects in route
+
+	trip_ids=[]
+	for trip in trips:
+		trip_ids.append(trip.trip_id)     #putting all the trip_ids into a list
+
+	stop_ids_on_trip=[]
+	for trip_id in trip_ids:
+		stop_id=get_trip_stop_ids(trip_id)			#<--- should output ids of stops on trip
+		stop_ids_on_trip.append(stop_id)     #<--- Will result in a list of lists
+	#get_stop_by_id(stop_id)			#<--- Might need this to get stop sequence
+
+	get_stop_lat_long(stop_id)		#<--- should output lat long of stop, given stop id
+	return True 					#<--- needs to return list of lat longs for all stops on route
 	
 
 
@@ -2747,9 +2762,12 @@ class Stop_Time(Base):
 	stop = relationship("Stop", 
 		primaryjoin="Stop.stop_id==Stop_Time.stop_id")
 
-def get_trip_stops(trip_id):
-	stops=Session.query(Stop_Time).filter_by(trip_id=trip_id).all()
-	return stops
+def get_trip_stop_ids(trip_id):
+	stop_time_objects=Session.query(Stop_Time).filter_by(trip_id=trip_id).all()
+	stop_ids=[]
+	for stop_time in stop_time_objects:
+		stop_ids.append(stop_time.stop_id)
+	return stop_ids
 	
 
 

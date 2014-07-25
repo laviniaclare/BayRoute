@@ -29,7 +29,7 @@
 					<div id='{{ agency_names[agency.agency_id] }}'>
 						{{ agency_names[agency.agency_id] }}:<br></br>
 						{% for route in agency_routes[agency.agency_id] %}
-							<input type="checkbox" class='{{ agency_names[agency.agency_id] }}' name="route" value="{{ agency_routes[agency.agency_id][route]['id'] }}"/>{{ agency_routes[agency.agency_id][route]['name'] }}<br></br>
+							<input type="checkbox" class='{{ agency.agency_id }}' name="route" value="{{ agency_routes[agency.agency_id][route]['id'] }}"/>{{ agency_routes[agency.agency_id][route]['name'] }}
 						 {% endfor %}
 						</div>
 					{% endfor %}
