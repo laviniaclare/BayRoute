@@ -1,5 +1,7 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, Response, session, url_for
+from sqlalchemy.ext.declarative import DeclarativeMeta
 import model
+import json
 
 app = Flask(__name__)
 app.secret_key = '\xdd$j\x8dX\x19\xe69\x08"t/\'K\x1c\x1di"\'C\x8d*(\xd2'
@@ -13,6 +15,7 @@ def load_options():
 	return render_template('options-page.html', agencies_list=agencies_list, agency_names=agency_names, agency_routes=agency_routes)
 
 
+
 @app.route('/', methods=['POST'])
 def load_map():
 	agencies=request.form.getlist('agency')
@@ -20,12 +23,21 @@ def load_map():
 	time=request.form.getlist('time')
 	print time
 	print agencies
-	print routes
-	return redirect('/map')
+	print "load_map", routes
+	return redirect(url_for('.show_map', routes=json.dumps(routes)))
 
 @app.route('/map')
 def show_map():
-	return render_template('map.html')
+	routes_to_display=request.args['routes']
+	# print "show_map", routes_to_display
+	routes_to_display=json.loads(routes_to_display)
+	routes_lat_longs=[]
+	for route in routes_to_display:
+		route_lat_longs=model.get_all_stops_on_route(route)
+		routes_lat_longs.append(route_lat_longs)
+		print route
+	print routes_lat_longs
+	return render_template('map.html', routes_lat_longs=routes_lat_longs)
 
 
 

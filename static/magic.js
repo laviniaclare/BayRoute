@@ -42,27 +42,22 @@
 // }
 
 function unchecklines(agency_id){
-	l=$("input."+agency_id+":checkbox" );
+	var l=$("input."+agency_id+":checkbox" );
 	l.prop('checked', false);
 	console.log('I unchecked some boxes!');
 };
 
 function checklines(agency_id){
-	l=$("input."+agency_id+":checkbox" );
-	// console.log(l)
+	var l=$("input."+agency_id+":checkbox" );
 	l.prop('checked', true);
 	console.log('I checked some boxes!');
 };
 
 function togglelines(e){
-	// console.log("The next thing you see is e")
-	// console.log(e)
 	var target=$(e.target)
-	// console.log('clicked: ' + this + ' val: ' + $(this).val() );
-	agency_id=$(this).val()
+	var agency_id=$(this).val()
 	console.log("Agency ID: "+ agency_id)
 
-	// var g=$('.'+agency_id).filter( ":checkbox[checked=checked]" );
 	var g=$('.'+agency_id+':checked');
 	console.log("These are the agency boxes that are checked: "+g.length)
 
@@ -76,11 +71,6 @@ function togglelines(e){
 
 function main() {
 
-	// var systemsContainer = $('div#systems')
-
-	// var systemCheckboxesHtml=renderSystemCheckboxes(systems).join('')
-
-	// systemsContainer.append(systemCheckboxesHtml)
 
 	var s=$('input[name=agency]');
 	

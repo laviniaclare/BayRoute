@@ -33,6 +33,196 @@ def get_agency_routes(agency_id):
 	agency_routes=Session.query(Route).filter_by(agency_id=agency_id).all()
 	return agency_routes
 
+def get_all_agencies():
+	all_agencies=Session.query(Agency).all()
+	return all_agencies
+
+def get_agency_name_dict():
+	agencies_id_to_name={
+		'3D':'Tridelta Transit',
+		'AB':'AirBART',
+		'AC':'AC Transit',
+		'AM':'Capitol Corridor',
+		'AT':'Angel Island Ferry',
+		'AY':'American Canyon Transit (Vine Transit)',
+		'BA':'BART',
+		'BG':'Blue and Gold Fleet',
+		'CC':'County Connection',
+		'CE':'Ace Rail',
+		'CT':'CalTrain',
+		'DE':'Dumbarton Express',
+		'EM':'Emerygoround',
+		'FS':'FAST Transit',
+		'GF':'Golden Gate Ferry',
+		'GG':'Golden Gate Transit',
+		'HF':'Alcatraz Cruises',
+		'MA':'Marin Transit',
+		'MS':'Marguerite Shuttle (Stanford)',
+		'PE':'Petaluma Transit',
+		'RV':'Delta Breeze Transit (Rio Vista City)',
+		'SB':'San Francisco Bay Ferry',
+		'SC':'Vally Transportation Authority',
+		'SF':'SFMTA (Muni)',
+		'SM':'SamTrans',
+		'SO':'Sonoma County Transit',
+		'SR':'CityBus (Santa Rosa)',
+		'ST':'Soltrans',
+		'UC':'Union City Transit',
+		'VC':'City Coach',
+		'VN':'The Vine',
+		'WC':'WestCat',
+		'WH':'Wheels Bus',
+		'YV':'Yountville Trolley (Vine Transit)'
+		}
+	# name=agencies_id_to_name[agency_id]
+	return agencies_id_to_name
+
+
+
+class Route(Base):
+	__tablename__='gtfs_routes'
+	route_id = Column(String(10), primary_key = True)
+	route_short_name = Column(String(10), nullable = True)
+	route_long_name = Column(String(30), nullable=True)
+	route_type = Column(Integer, nullable=True)
+	agency_id=Column(Integer, ForeignKey('gtfs_agency.agency_id'))
+
+	agency = relationship("Agency",
+		primaryjoin="Agency.agency_id==Route.agency_id")
+
+def get_route_trips(route_id):
+	trips=Session.query(Trip).filter_by(route_id=route_id).all()
+	return trips
+
+def get_all_stops_on_route(route_id):
+	trips=get_route_trips(route_id)       #<--- outputs list of trip objects in route
+
+	trip_ids=[]
+	for trip in trips:
+		trip_ids.append(trip.trip_id)     #putting all the trip_ids into a list
+
+	stop_ids_on_trip=[]
+	for trip_id in trip_ids:
+		stop_ids=get_trip_stop_ids(trip_id)			#<--- should output list of ids of stops on trip
+		for stop_id in stop_ids:					#second loop to iliminate nesting of stop id lists.
+			stop_ids_on_trip.append(stop_id)        #this should be just a list (not a nested one)
+	#get_stop_by_id(stop_id)			#<--- Might need this to get stop sequence
+	lat_longs_on_route=[]
+	for stop_id in stop_ids_on_trip:
+		lat_long=get_stop_lat_long(stop_id)		#<--- should output lat long of stop, given stop id
+		lat_longs_on_route.append(lat_long)
+	return lat_longs_on_route 					#<--- needs to return list of lat longs pairs for all stops on route
+	
+
+
+class Trip(Base):
+	__tablename__='gtfs_trips'
+	trip_id=Column(Integer, primary_key=True)
+	service_id= Column(Integer, nullable=True)
+	trip_headsign=Column(String(10), nullable=True)
+	direction_id=Column(Integer, nullable=True)
+	route_id=Column(Integer, ForeignKey('gtfs_routes.route_id'))
+	direction_id=Column(Integer, nullable=True)
+
+
+	route = relationship("Route",
+		primaryjoin="Route.route_id==Trip.route_id")
+
+
+
+
+class Stop_Time(Base):
+	__tablename__='gtfs_stop_times'
+	trip_id = Column(Integer, ForeignKey('gtfs_trips.trip_id'), primary_key=True)
+	stop_id = Column(Integer, ForeignKey('gtfs_stops.stop_id'), primary_key=True)
+	stop_sequence=Column(Integer, primary_key=True)
+	arrival_time=Column(String(30))
+	departure_time=Column(String(30))
+
+	trip = relationship("Trip",
+			primaryjoin="Trip.trip_id==Stop_Time.trip_id")
+
+	stop = relationship("Stop", 
+		primaryjoin="Stop.stop_id==Stop_Time.stop_id")
+
+def get_trip_stop_ids(trip_id):
+	stop_time_objects=Session.query(Stop_Time).filter_by(trip_id=trip_id).all()
+	stop_ids=[]
+	for stop_time in stop_time_objects:
+		stop_ids.append(stop_time.stop_id)
+	return stop_ids
+	
+
+
+class Stop(Base):
+	__tablename__='gtfs_stops'
+	stop_id = Column(Integer, primary_key = True)
+	stop_name = Column(String, nullable = True)
+	stop_lat = Column(Float)
+	stop_lon=Column(Float)
+	zone_id=Column(Integer, nullable=True)
+
+def get_stop_by_id(stop_id):
+	stop=Session.query(Stop).filter_by(stop_id=stop_id).all()
+	stop=stop[0]
+	return stop
+
+
+def get_stop_lat_long(stop_id):
+	lat_long=[]
+	stop=Session.query(Stop).filter_by(stop_id=stop_id).all()
+	stop=stop[0]
+	lat=stop.stop_lat
+	lon=stop.stop_lon
+	lat_long.append(lat)
+	lat_long.append(lon)
+	return lat_long
+
+
+
+
+class Calender(Base):
+	__tablename__=('gtfs_calender')
+
+	service_id=Column(Integer, primary_key=True)
+	monday=Column(Integer)
+	tuesday=Column(Integer)
+	wednesday=Column(Integer)
+	thursday=Column(Integer)
+	friday=Column(Integer)
+	saturday=Column(Integer)
+	sunday=Column(Integer)
+	start_date=Column(Integer)
+	end_date=Column(Integer)
+
+
+
+class Fair_attributes(Base):
+	__tablename__='gtfs_fair_attributes'
+	fare_id=Column(Integer, primary_key=True)
+	price=Column(Integer)
+	currency_type=Column(String(10))
+	payment_method=Column(Integer)
+	transfers=Column(Integer)
+
+# class AlchemyEncoder(json.JSONEncoder):
+# 	def default(self, obj):
+# 		if isinstance(obj.__class__, DeclarativeMeta):
+# 			# an SQLAlchemy class
+# 			fields = {}
+# 			for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
+# 				data = obj.__getattribute__(field)
+# 				try:
+# 					json.dumps(data) # this will fail on non-encodable values, like other classes
+# 					fields[field] = data
+# 				except TypeError:
+# 					fields[field] = None
+# 				# a json-encodable dict
+			
+# 			return fields
+
+# 		return json.JSONEncoder.default(self, obj)
+
 def agency_to_routes_dict():
 	output={
 	  'FS': {
@@ -2654,170 +2844,5 @@ def agency_to_routes_dict():
 	}
 	return output
 
-def get_all_agencies():
-	all_agencies=Session.query(Agency).all()
-	return all_agencies
-
-def get_agency_name_dict():
-	agencies_id_to_name={
-		'3D':'Tridelta Transit',
-		'AB':'AirBART',
-		'AC':'AC Transit',
-		'AM':'Capitol Corridor',
-		'AT':'Angel Island Ferry',
-		'AY':'American Canyon Transit (Vine Transit)',
-		'BA':'BART',
-		'BG':'Blue and Gold Fleet',
-		'CC':'County Connection',
-		'CE':'Ace Rail',
-		'CT':'CalTrain',
-		'DE':'Dumbarton Express',
-		'EM':'Emerygoround',
-		'FS':'FAST Transit',
-		'GF':'Golden Gate Ferry',
-		'GG':'Golden Gate Transit',
-		'HF':'Alcatraz Cruises',
-		'MA':'Marin Transit',
-		'MS':'Marguerite Shuttle (Stanford)',
-		'PE':'Petaluma Transit',
-		'RV':'Delta Breeze Transit (Rio Vista City)',
-		'SB':'San Francisco Bay Ferry',
-		'SC':'Vally Transportation Authority',
-		'SF':'SFMTA (Muni)',
-		'SM':'SamTrans',
-		'SO':'Sonoma County Transit',
-		'SR':'CityBus (Santa Rosa)',
-		'ST':'Soltrans',
-		'UC':'Union City Transit',
-		'VC':'City Coach',
-		'VN':'The Vine',
-		'WC':'WestCat',
-		'WH':'Wheels Bus',
-		'YV':'Yountville Trolley (Vine Transit)'
-		}
-	# name=agencies_id_to_name[agency_id]
-	return agencies_id_to_name
 
 
-class Route(Base):
-	__tablename__='gtfs_routes'
-	route_id = Column(String(10), primary_key = True)
-	route_short_name = Column(String(10), nullable = True)
-	route_long_name = Column(String(30), nullable=True)
-	route_type = Column(Integer, nullable=True)
-	agency_id=Column(Integer, ForeignKey('gtfs_agency.agency_id'))
-
-	agency = relationship("Agency",
-		primaryjoin="Agency.agency_id==Route.agency_id")
-
-def get_route_trips(route_id):
-	trips=Session.query(Trip).filter_by(route_id=route_id).all()
-	return trips
-
-def get_all_stops_on_route(route_id):
-	trips=get_route_trips(route_id)       #<--- outputs list of trip objects in route
-
-	trip_ids=[]
-	for trip in trips:
-		trip_ids.append(trip.trip_id)     #putting all the trip_ids into a list
-
-	stop_ids_on_trip=[]
-	for trip_id in trip_ids:
-		stop_id=get_trip_stop_ids(trip_id)			#<--- should output ids of stops on trip
-		stop_ids_on_trip.append(stop_id)     #<--- Will result in a list of lists
-	#get_stop_by_id(stop_id)			#<--- Might need this to get stop sequence
-
-	get_stop_lat_long(stop_id)		#<--- should output lat long of stop, given stop id
-	return True 					#<--- needs to return list of lat longs for all stops on route
-	
-
-
-class Trip(Base):
-	__tablename__='gtfs_trips'
-	trip_id=Column(Integer, primary_key=True)
-	service_id= Column(Integer, nullable=True)
-	trip_headsign=Column(String(10), nullable=True)
-	direction_id=Column(Integer, nullable=True)
-	route_id=Column(Integer, ForeignKey('gtfs_routes.route_id'))
-	direction_id=Column(Integer, nullable=True)
-
-
-	route = relationship("Route",
-		primaryjoin="Route.route_id==Trip.route_id")
-
-
-
-
-class Stop_Time(Base):
-	__tablename__='gtfs_stop_times'
-	trip_id = Column(Integer, ForeignKey('gtfs_trips.trip_id'), primary_key=True)
-	stop_id = Column(Integer, ForeignKey('gtfs_stops.stop_id'), primary_key=True)
-	stop_sequence=Column(Integer, primary_key=True)
-	arrival_time=Column(String(30))
-	departure_time=Column(String(30))
-
-	trip = relationship("Trip",
-			primaryjoin="Trip.trip_id==Stop_Time.trip_id")
-
-	stop = relationship("Stop", 
-		primaryjoin="Stop.stop_id==Stop_Time.stop_id")
-
-def get_trip_stop_ids(trip_id):
-	stop_time_objects=Session.query(Stop_Time).filter_by(trip_id=trip_id).all()
-	stop_ids=[]
-	for stop_time in stop_time_objects:
-		stop_ids.append(stop_time.stop_id)
-	return stop_ids
-	
-
-
-class Stop(Base):
-	__tablename__='gtfs_stops'
-	stop_id = Column(Integer, primary_key = True)
-	stop_name = Column(String, nullable = True)
-	stop_lat = Column(Float)
-	stop_lon=Column(Float)
-	zone_id=Column(Integer, nullable=True)
-
-def get_stop_by_id(stop_id):
-	stop=Session.query(Stop).filter_by(stop_id=stop_id).all()
-	stop=stop[0]
-	return stop
-
-
-def get_stop_lat_long(stop_id):
-	lat_long=[]
-	stop=Session.query(Stop).filter_by(stop_id=stop_id).all()
-	stop=stop[0]
-	lat=stop.stop_lat
-	lon=stop.stop_lon
-	lat_long.append(lat)
-	lat_long.append(lon)
-	return lat_long
-
-
-
-
-class Calender(Base):
-	__tablename__=('gtfs_calender')
-
-	service_id=Column(Integer, primary_key=True)
-	monday=Column(Integer)
-	tuesday=Column(Integer)
-	wednesday=Column(Integer)
-	thursday=Column(Integer)
-	friday=Column(Integer)
-	saturday=Column(Integer)
-	sunday=Column(Integer)
-	start_date=Column(Integer)
-	end_date=Column(Integer)
-
-
-
-class Fair_attributes(Base):
-	__tablename__='gtfs_fair_attributes'
-	fare_id=Column(Integer, primary_key=True)
-	price=Column(Integer)
-	currency_type=Column(String(10))
-	payment_method=Column(Integer)
-	transfers=Column(Integer)

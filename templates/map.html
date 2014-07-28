@@ -12,5 +12,14 @@
 	<body>
 		<div id='map'></div>
 		<script src='/static/map.js'></script>
+		<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+		{{ routes_lat_longs }}
+
+		<script>
+ 			$(document).ready(function() {
+ 				console.log("HI! Lat/longs sent to html page!")
+ 				displayLines({{ routes_lat_longs|safe }})
+ 			})
+ 		</script>
 	</body>
 </html>
