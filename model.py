@@ -6,6 +6,7 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import DateTime
 from sqlalchemy import ForeignKey
+from sqlalchemy import distinct
 from sqlalchemy.orm import relationship, backref
 
 
@@ -101,17 +102,28 @@ def get_all_stops_on_route(route_id):
 	for trip in trips:
 		trip_ids.append(trip.trip_id)     #putting all the trip_ids into a list
 
-	stop_ids_on_trip=[]
-	for trip_id in trip_ids:
-		stop_ids=get_trip_stop_ids(trip_id)			#<--- should output list of ids of stops on trip
-		for stop_id in stop_ids:					#second loop to iliminate nesting of stop id lists.
-			stop_ids_on_trip.append(stop_id)        #this should be just a list (not a nested one)
-	#get_stop_by_id(stop_id)			#<--- Might need this to get stop sequence
+	stop_times=get_stops_by_trip_ids(trip_ids)
 	lat_longs_on_route=[]
-	for stop_id in stop_ids_on_trip:
-		lat_long=get_stop_lat_long(stop_id)		#<--- should output lat long of stop, given stop id
+	for stop_time in stop_times:
+		lat=stop_time.stop.stop_lat
+		lon=stop_time.stop.stop_lon
+		lat_long=[lat,lon]
 		lat_longs_on_route.append(lat_long)
-	return lat_longs_on_route 					#<--- needs to return list of lat longs pairs for all stops on route
+	return lat_longs_on_route 
+
+
+
+	# stop_ids_on_trip=[]
+	# for trip_id in trip_ids:
+	# 	stop_ids=get_trip_stop_ids(trip_id)			#<--- should output list of ids of stops on trip
+	# 	for stop_id in stop_ids:					#second loop to iliminate nesting of stop id lists.
+	# 		stop_ids_on_trip.append(stop_id)        #this should be just a list (not a nested one)
+	# get_stop_by_id(stop_id)			#<--- Might need this to get stop sequence
+	# lat_longs_on_route=[]
+	# for stop_id in stop_ids_on_trip:
+	# 	lat_long=get_stop_lat_long(stop_id)		#<--- should output lat long of stop, given stop id
+	# 	lat_longs_on_route.append(lat_long)
+	# return lat_longs_on_route 					#<--- needs to return list of lat longs pairs for all stops on route
 	
 
 
@@ -146,11 +158,26 @@ class Stop_Time(Base):
 		primaryjoin="Stop.stop_id==Stop_Time.stop_id")
 
 def get_trip_stop_ids(trip_id):
+	#stop_time_objects=Session.query(Stop_Time).filter(Stop_Time.trip_id.in_(trip_ids)).distinct(Stop_Time.stop_id)
 	stop_time_objects=Session.query(Stop_Time).filter_by(trip_id=trip_id).all()
+	# stop_ids_by_sequence={}
+	# for stop_time in stop_time_objects:
+	# 	stop_ids_by_sequence[stop_time.stop_sequence]=stop_time.stop_id
+
 	stop_ids=[]
+	# for i in range(1,len(stop_ids_by_sequence)+1):
+	# 	stop_ids.append(stop_ids_by_sequence[i])
 	for stop_time in stop_time_objects:
 		stop_ids.append(stop_time.stop_id)
+
+	print stop_ids
 	return stop_ids
+
+def get_stops_by_trip_ids(trip_ids):
+	stop_time_objects=Session.query(Stop_Time).filter(Stop_Time.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
+	for stop_time in stop_time_objects:
+		print stop_time.stop.stop_lat
+	return stop_time_objects
 	
 
 

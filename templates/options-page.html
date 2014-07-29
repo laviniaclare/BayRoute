@@ -1,6 +1,7 @@
 <html>
 	<head>
         <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 	</head>
 
 	<body>
@@ -9,18 +10,20 @@
 		<div id='filters'>
 			
 			<form action='/' class='filters' method='POST'>
-
 				<div id='agencies'>
 					<h4><u>Agencies</u></h4>
 					Select an agency to diplay all routes in that agency on the map.<p></p>
+						{% for agency in agencies_list %}
+						<input type="checkbox" name="agency" value='{{ agency.agency_id }}' data-agency-id="{{agency.agency_id}}" data-agency-name="{{ agency_names[agency.agency_id] }}" />{{ agency_names[agency.agency_id] }}<br></br>
+						{% endfor %}
 					
-					{% for agency in agencies_list %}
-					<input type="checkbox" name="agency" value='{{ agency.agency_id }}'/>{{ agency_names[agency.agency_id] }}<br></br>
-					
-					{% endfor %}
 					<!-- <input type="checkbox" name="agency" value=none checked=checked/> NULL -->
 				</div>
-	
+				<div id='button'>
+					<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
+				</div>
+				</div>
+				
 				<div id='bus-routes'>
 					<h4><u>Routes</u></h4>
 					Select routes to show just these routes on the map.<p></p>
@@ -29,7 +32,7 @@
 					<div id='{{ agency_names[agency.agency_id] }}'>
 						{{ agency_names[agency.agency_id] }}:<br></br>
 						{% for route in agency_routes[agency.agency_id] %}
-							<input type="checkbox" class='{{ agency.agency_id }}' name="route" value="{{ agency_routes[agency.agency_id][route]['id'] }}"/>{{ agency_routes[agency.agency_id][route]['name'] }}
+							<input type="checkbox" class='{{ agency.agency_id }}' name="route" data-agency-id = "{{agency.agency_id}}" value="{{ agency_routes[agency.agency_id][route]['id'] }}"/>{{ agency_routes[agency.agency_id][route]['name'] }}
 						 {% endfor %}
 						</div>
 					{% endfor %}
@@ -46,9 +49,7 @@
 		            </select>
 				</div> -->
 				
-				<div id='button'>
-					<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
-				</div>
+				
 
 
 			</form>
