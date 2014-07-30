@@ -18,18 +18,14 @@
 		<div id='map'></div>
 		<script src='/static/map.js'></script>
 		<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
-			
 
 		<script>
- 			$(document).ready(function() {
- 				console.log("HI! Lat/longs sent to html page!")
- 				for (var i =0; i < {{ routes_lat_longs[0] }}.length; i++) {
- 					console.log(i)
- 					console.log('looping')
- 					console.log({{ routes_lat_longs[0] }}[i])
+			var routes = JSON.parse('{{ routes_trips_to_latlongs_dict | safe }}');
 
- 				};
- 					displayLines({{ routes_lat_longs|safe }})
+ 			$(document).ready(function() {
+ 				console.log("HI! trips to Lat/longs dict recieved by html page!")
+ 		
+ 				displayRoutes(routes)
  				
  			})
  		</script>

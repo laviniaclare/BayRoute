@@ -92,23 +92,48 @@ class Route(Base):
 		primaryjoin="Agency.agency_id==Route.agency_id")
 
 def get_route_trips(route_id):
+	print "in get_route_trips"
 	trips=Session.query(Trip).filter_by(route_id=route_id).all()
+	print "sending trip objects back to get_all_stops_on_route"
 	return trips
 
 def get_all_stops_on_route(route_id):
+	print "in get_all_stops_on_route. About to get trips on route."
 	trips=get_route_trips(route_id)       #<--- outputs list of trip objects in route
+	print "got the trip objects"
 
 	trip_ids=[]
 	for trip in trips:
 		trip_ids.append(trip.trip_id)     #putting all the trip_ids into a list
+	
+
+	# lat_longs_on_route=[]
+	# for trip_id in trip_ids:
+	# 	stop_times=get_stops_by_trip_ids(trip_id)
+	# 	lat_longs_on_route.append(stop_times)
 
 	stop_times=get_stops_by_trip_ids(trip_ids)
-	lat_longs_on_route=[]
+	# lat_longs_on_route=[]
+	lat_longs_on_route={}
 	for stop_time in stop_times:
+		if not stop_time.trip_id in lat_longs_on_route.keys():
+			lat_longs_on_route[stop_time.trip_id]=[]
+
+		#trip_group=[]
+		
+		# for stop_time.trip_id in stop_times:
 		lat=stop_time.stop.stop_lat
 		lon=stop_time.stop.stop_lon
-		lat_long=[lat,lon]
-		lat_longs_on_route.append(lat_long)
+		lat_longs_on_route[stop_time.trip_id].append([lat,lon])
+		# lat_long=[lat,lon]
+		# trip_group.append(lat_long)
+		# print 'in get_all_stops_on_route. getting lat-longs from trip ids'
+	
+		# print "this is one trip:", trip_group
+		# lat_longs_on_route.append(lat_long)
+	print ''
+	print 'printing lat_longs_on_route'	
+	print lat_longs_on_route
 	return lat_longs_on_route 
 
 
@@ -157,26 +182,20 @@ class Stop_Time(Base):
 	stop = relationship("Stop", 
 		primaryjoin="Stop.stop_id==Stop_Time.stop_id")
 
-def get_trip_stop_ids(trip_id):
-	#stop_time_objects=Session.query(Stop_Time).filter(Stop_Time.trip_id.in_(trip_ids)).distinct(Stop_Time.stop_id)
-	stop_time_objects=Session.query(Stop_Time).filter_by(trip_id=trip_id).all()
-	# stop_ids_by_sequence={}
-	# for stop_time in stop_time_objects:
-	# 	stop_ids_by_sequence[stop_time.stop_sequence]=stop_time.stop_id
+# def get_trip_stop_ids(trip_id):
+# 	stop_time_objects=Session.query(Stop_Time).filter_by(trip_id=trip_id).all()
 
-	stop_ids=[]
-	# for i in range(1,len(stop_ids_by_sequence)+1):
-	# 	stop_ids.append(stop_ids_by_sequence[i])
-	for stop_time in stop_time_objects:
-		stop_ids.append(stop_time.stop_id)
+# 	stop_ids=[]
+# 	for stop_time in stop_time_objects:
+# 		stop_ids.append(stop_time.stop_id)
 
-	print stop_ids
-	return stop_ids
+# 	print stop_ids
+# 	return stop_ids
 
 def get_stops_by_trip_ids(trip_ids):
+	print 'in get_stops_by_trip_ids'
 	stop_time_objects=Session.query(Stop_Time).filter(Stop_Time.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
-	for stop_time in stop_time_objects:
-		print stop_time.stop.stop_lat
+	print "sending stop_time objects back to get_all_stops_on_route"
 	return stop_time_objects
 	
 

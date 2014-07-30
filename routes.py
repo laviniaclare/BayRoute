@@ -20,8 +20,6 @@ def load_options():
 def load_map():
 	agencies=request.form.getlist('agency')
 	routes=request.form.getlist('route')
-	time=request.form.getlist('time')
-	print time
 	print agencies
 	print "load_map", routes
 	return redirect(url_for('.show_map', routes=json.dumps(routes)))
@@ -31,13 +29,13 @@ def show_map():
 	routes_to_display=request.args['routes']
 	# print "show_map", routes_to_display
 	routes_to_display=json.loads(routes_to_display)
-	routes_lat_longs=[]
+	routes_trips_to_latlongs_dict=[]
 	for route in routes_to_display:
 		route_lat_longs=model.get_all_stops_on_route(route)
-		routes_lat_longs.append(route_lat_longs)
+		routes_trips_to_latlongs_dict.append(route_lat_longs)
 		print route
-	print routes_lat_longs
-	return render_template('map.html', routes_lat_longs=routes_lat_longs)
+	print routes_trips_to_latlongs_dict
+	return render_template('map.html', routes_trips_to_latlongs_dict=json.dumps(routes_trips_to_latlongs_dict))
 
 
 
