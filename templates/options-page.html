@@ -12,50 +12,27 @@
 	</head>
 
 	<body>
-		<h2>What do you want to see?</h2>
-				<h4>You can pick several agencies to diplay on the map, or just pick the routes you want to see.</h4>
-		<div class="row">
-			<div class="col-md-4">
-				
-				<div id='filters'>
-						
-					<form action='/api/routes' class='filters' method='GET'>
-						<!-- <div id='agencies'>
-							<h4><u>Agencies</u></h4>
-							<p>Select an agency to diplay all routes in that agency on the map.</p>
-							{% for agency in agencies_list %}
-								<input type="checkbox" name="agency" value='{{ agency.agency_id }}' data-agency-id="{{agency.agency_id}}" data-agency-name="{{ agency_names[agency.agency_id] }}" />{{ agency_names[agency.agency_id] }}<br></br>
-							{% endfor %}
-							
-							
-						</div--> 
-						<div id='button'>
-							<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
-						</div>
-						
-						<div id='bus-routes'>
-							<h4><u>Routes</u></h4>
-							<p>Select routes to show just these routes on the map.</p>
-							<div class='btn-group'>
-								<select name='routes' class="multiselect" multiple="multiple">
-									{% for agency in agencies_list %}
 
-										{% for route in agency_routes[agency.agency_id] %}
-											<option value="{{ agency_routes[agency.agency_id][route]['id'] }}">{{ agency_names[agency.agency_id] }}: {{ agency_routes[agency.agency_id][route]['name'] }}
-											</option>
-										 {% endfor %}
-							
-									{% endfor %}
-								</select>
-								<button type='submit' class="btn btn-primary">Get Selected</button>
-							</div>
-						</div>
-					</form>
+		
+		<form action='/api/routes' class='filters' method='GET'>
+			
+			<div class='btn-group'>
+				<select name='routes' class="multiselect" multiple="multiple">
+					{% for agency in agencies_list %}
 
-				</div>	
+						{% for route in agency_routes[agency.agency_id] %}
+							<option value="{{ agency_routes[agency.agency_id][route]['id'] }}">{{ agency_names[agency.agency_id] }}: {{ agency_routes[agency.agency_id][route]['name'] }}
+							</option>
+						 {% endfor %}
+			
+					{% endfor %}
+				</select>
+				<button type='submit' class="btn btn-primary">Get Selected</button>
 			</div>
-			<div class="col-md-8"><div id='map'>HELLO</div></div>
-		</div>
+		</form>
+
+	<div id='map'>HELLO</div>
+
 
 		<script src='/static/map.js'></script>
 		

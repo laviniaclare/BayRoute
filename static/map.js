@@ -3,9 +3,6 @@ var map = L.mapbox.map('map', 'laviniaclare.ina498lm');
 
 function displayRoutes(routes){
 	for (var i =0; i < routes.length; i++) {
-		console.log('looping')
-		console.log('displaying one trip/latlongs dict (full route of trips)', [i])
-		console.log(routes[i])
 		var route_trips=routes[i]
 		displayTrips(route_trips)
 
