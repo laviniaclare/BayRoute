@@ -80,6 +80,27 @@ function main() {
 			maxHeight:200,
 			enableFiltering: true
 		});
+
+		$( "form" ).on( "submit", function( event ) {
+			var form=$(this)
+			var promise = $.ajax({
+				url: form.attr('action'),
+				method: form.attr('method'),
+				data: form.serialize()
+			})
+
+			promise.done(function(response) {
+				displayRoutes(response.routes);
+			})
+
+			promise.fail(function(xhr, e) {
+				console.log(arguments)
+			})
+
+		  event.preventDefault();
+
+		  // console.log( $( this ).serialize() );
+		});
 };
 
 $(main);

@@ -17,7 +17,7 @@ def load_options():
 
 @app.route('/api/routes', methods=['GET'])
 def prepare_routes_for_display():
-	routes_to_display=request.args['routes']
+	routes_to_display=json.dumps(request.values.getlist('routes'))
 	output={}
 	output['routes']=get_routes_by_id(routes_to_display)
 	return jsonify(output)
@@ -25,10 +25,7 @@ def prepare_routes_for_display():
 
 @app.route('/', methods=['POST'])
 def load_map():
-	agencies=request.form.getlist('agency')
-	routes=request.form.getlist('route')
-	print agencies
-	print "load_map", routes
+	routes=request.form.getlist('routes')
 	return redirect(url_for('.show_map', routes=json.dumps(routes)))
 
 @app.route('/map')

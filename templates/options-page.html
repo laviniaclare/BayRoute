@@ -19,7 +19,7 @@
 				
 				<div id='filters'>
 						
-					<form action='/' class='filters' method='POST'>
+					<form action='/api/routes' class='filters' method='GET'>
 						<!-- <div id='agencies'>
 							<h4><u>Agencies</u></h4>
 							<p>Select an agency to diplay all routes in that agency on the map.</p>
@@ -37,7 +37,7 @@
 							<h4><u>Routes</u></h4>
 							<p>Select routes to show just these routes on the map.</p>
 							<div class='btn-group'>
-								<select class="multiselect" multiple="multiple">
+								<select name='routes' class="multiselect" multiple="multiple">
 									{% for agency in agencies_list %}
 
 										{% for route in agency_routes[agency.agency_id] %}
@@ -47,7 +47,7 @@
 							
 									{% endfor %}
 								</select>
-								<button id="example28-values" class="btn btn-primary">Get Selected</button>
+								<button type='submit' class="btn btn-primary">Get Selected</button>
 							</div>
 						</div>
 					</form>
