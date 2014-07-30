@@ -1,60 +1,60 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
+		<meta charset=utf-8 />
+		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+		<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+		<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet' />
         <link rel="stylesheet" href="/static/css/style.css" />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 	</head>
 
 	<body>
 		<h2>What do you want to see?</h2>
-		<h4>You can pick several agencies to diplay on the map, or just pick the routes you want to see.</h4>
-		<div id='filters'>
-			
-			<form action='/' class='filters' method='POST'>
-				<div id='agencies'>
-					<h4><u>Agencies</u></h4>
-					Select an agency to diplay all routes in that agency on the map.<p></p>
-						{% for agency in agencies_list %}
-						<input type="checkbox" name="agency" value='{{ agency.agency_id }}' data-agency-id="{{agency.agency_id}}" data-agency-name="{{ agency_names[agency.agency_id] }}" />{{ agency_names[agency.agency_id] }}<br></br>
-						{% endfor %}
-					
-					<!-- <input type="checkbox" name="agency" value=none checked=checked/> NULL -->
-				</div>
-				<div id='button'>
-					<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
-				</div>
-				</div>
+				<h4>You can pick several agencies to diplay on the map, or just pick the routes you want to see.</h4>
+		<div class="row">
+			<div class="col-md-4">
 				
-				<div id='bus-routes'>
-					<h4><u>Routes</u></h4>
-					Select routes to show just these routes on the map.<p></p>
-					<!-- <input type="checkbox" name="route" value=none checked=checked/> NULL. -->
-					{% for agency in agencies_list %}
-					<div id='{{ agency_names[agency.agency_id] }}'>
-						{{ agency_names[agency.agency_id] }}:<br></br>
-						{% for route in agency_routes[agency.agency_id] %}
-							<input type="checkbox" class='{{ agency.agency_id }}' name="route" data-agency-id = "{{agency.agency_id}}" value="{{ agency_routes[agency.agency_id][route]['id'] }}"/>{{ agency_routes[agency.agency_id][route]['name'] }}
-						 {% endfor %}
+				<div id='filters'>
+						
+					<form action='/' class='filters' method='POST'>
+						<div id='agencies'>
+							<h4><u>Agencies</u></h4>
+							<p>Select an agency to diplay all routes in that agency on the map.</p>
+							{% for agency in agencies_list %}
+								<input type="checkbox" name="agency" value='{{ agency.agency_id }}' data-agency-id="{{agency.agency_id}}" data-agency-name="{{ agency_names[agency.agency_id] }}" />{{ agency_names[agency.agency_id] }}<br></br>
+							{% endfor %}
+							
+							<!-- <input type="checkbox" name="agency" value=none checked=checked/> NULL -->
 						</div>
-					{% endfor %}
-					
-				</div>
-				<!-- <div id='times'>
-					<h4><u>Times</u></h4>
-					Only bus lines running during the selected times will be diplayed.<p></p>
-					<select type="dropdownlist" name="time">
-		                <option name='time' value=none>Anytime </option>
-		                <option name='time' value="day">Daytime
-		                </option>
-		                <option name='time' value="late"> After Midnight
-		            </select>
-				</div> -->
-				
-				
+						<div id='button'>
+							<button type="btn btn-lg btn-primary btn-block" type="submit">Show Me the Map!</button>
+						</div>
+						
+						<div id='bus-routes'>
+							<h4><u>Routes</u></h4>
+							<p>Select routes to show just these routes on the map.</p>
+							<!-- <input type="checkbox" name="route" value=none checked=checked/> NULL. -->
+							{% for agency in agencies_list %}
+							<div id='{{ agency_names[agency.agency_id] }}'>
+								{{ agency_names[agency.agency_id] }}:<br></br>
+								{% for route in agency_routes[agency.agency_id] %}
+									<input type="checkbox" class='{{ agency.agency_id }}' name="route" data-agency-id = "{{agency.agency_id}}" value="{{ agency_routes[agency.agency_id][route]['id'] }}"/>{{ agency_routes[agency.agency_id][route]['name'] }}
+								 {% endfor %}
+							</div>
+							{% endfor %}
+							
+						</div>
+					</form>
 
+				</div>	
+			</div>
+			<div class="col-md-8"><div id='map'>HELLO</div></div>
+		</div>
 
-			</form>
-
-		</div>	
+		<script src='/static/map.js'></script>
+		
+		
 
 		<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
 
