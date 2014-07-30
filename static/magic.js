@@ -75,6 +75,11 @@ function main() {
 	var s=$('input[name=agency]');
 	
 		s.on('change', togglelines);
+
+		$('.multiselect').multiselect({
+			maxHeight:200,
+			enableFiltering: true
+		});
 };
 
 $(main);
