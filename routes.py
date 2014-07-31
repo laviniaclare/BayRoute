@@ -23,17 +23,6 @@ def prepare_routes_for_display():
 	return jsonify(output)
 
 
-@app.route('/', methods=['POST'])
-def load_map():
-	routes=request.form.getlist('routes')
-	return redirect(url_for('.show_map', routes=json.dumps(routes)))
-
-@app.route('/map')
-def show_map():
-	routes_to_display=request.args['routes']
-	routes_trips_to_latlongs_dict=get_routes_by_id(routes_to_display)
-
-	return render_template('map.html', routes_trips_to_latlongs_dict=json.dumps(routes_trips_to_latlongs_dict))
 
 def get_routes_by_id(route_ids):
 	routes_to_display=json.loads(route_ids)

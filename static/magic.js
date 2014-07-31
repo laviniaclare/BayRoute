@@ -90,6 +90,7 @@ function main() {
 			})
 
 			promise.done(function(response) {
+				clearRoutes()
 				displayRoutes(response.routes);
 			})
 
