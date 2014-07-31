@@ -42,7 +42,7 @@ function main() {
 		s.on('change', togglelines);
 
 		$('.multiselect').multiselect({
-			maxHeight:200,
+			maxHeight:400,
 			enableFiltering: true
 		});
 
