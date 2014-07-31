@@ -12,7 +12,7 @@ def load_options():
 	agencies_list=model.get_all_agencies()
 	agency_names=model.get_agency_name_dict()
 	agency_routes=model.agency_to_routes_dict()
-	return render_template('options-page.html', agencies_list=agencies_list, agency_names=agency_names, agency_routes=agency_routes)
+	return render_template('map.html', agencies_list=agencies_list, agency_names=agency_names, agency_routes=agency_routes)
 
 
 @app.route('/api/routes', methods=['GET'])

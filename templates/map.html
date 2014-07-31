@@ -1,116 +1,51 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<meta charset=utf-8 />
 		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 		<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
 		<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet' />
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="/static/css/style.css" />
-		<style>
-			body { margin:0; padding:0; }
-			#map { position:absolute; top:0; bottom:0; width:100%; }
-		</style>
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+       
+		<link rel="stylesheet" href="/static/css/bootstrap-multiselect.css" type="text/css"/>
 	</head>
+
 	<body>
-		<nav class='manu-ui'>
-			<a href='' id='back'>GO BACK!</a>
-		</nav>
-		<div id='map'></div>
+
+		
+		<form action='/api/routes' class='filters' method='GET'>
+			
+			<div class='btn-group'>
+				<select name='routes' class="multiselect" multiple="multiple">
+					{% for agency in agencies_list %}
+
+						{% for route in agency_routes[agency.agency_id] %}
+							<option value="{{ agency_routes[agency.agency_id][route]['id'] }}">{{ agency_names[agency.agency_id] }}: {{ agency_routes[agency.agency_id][route]['name'] }}
+							</option>
+						 {% endfor %}
+			
+					{% endfor %}
+				</select>
+				<button type='submit' class="btn btn-primary">Get Selected</button>
+			</div>
+		</form>
+
+	<div id='map'>HELLO</div>
+
+
 		<script src='/static/map.js'></script>
+		
+		
+
 		<script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
 
-		<script>
-			var routes = JSON.parse('{{ routes_trips_to_latlongs_dict | safe }}');
+		 <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
- 			$(document).ready(function() {
- 				console.log("HI! trips to Lat/longs dict recieved by html page!")
- 		
- 				displayRoutes(routes)
- 				
- 			})
- 		</script>
-	</body>
+        <script type="text/javascript" src="/static/bootstrap-multiselect.js"></script>
+
+		<script src='http://underscorejs.org/underscore.js'></script>
+
+		<script type='text/javascript' src="/static/magic.js"></script>
+	</body>	
 </html>
-
-<!-- <html>
-<head>
-	<meta charset=utf-8 />
-	<title>Toggling layers</title>
-	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet' />
-	<style>
-	  body { margin:0; padding:0; }
-	  #map { position:absolute; top:0; bottom:0; width:100%; }
-	</style>
-</head>
-<body>
-	<style>
-		.menu-ui {
-		  background:#fff;
-		  position:absolute;
-		  top:10px;right:10px;
-		  z-index:1;
-		  border-radius:3px;
-		  width:120px;
-		  border:1px solid rgba(0,0,0,0.4);
-		  }
-		  .menu-ui a {
-		    font-size:13px;
-		    color:#404040;
-		    display:block;
-		    margin:0;padding:0;
-		    padding:10px;
-		    text-decoration:none;
-		    border-bottom:1px solid rgba(0,0,0,0.25);
-		    text-align:center;
-		    }
-
-		    .menu-ui a.active {
-		      background:#3887BE;
-		      color:#FFF;
-		      }
-	   
-	</style>
-<nav id='menu-ui' class='menu-ui'></nav>
-<div id='map'></div>
-
-// 
-</body>
-</html><
-	script>
-		var map = L.map('map').setView([38.8922,-77.0348], 14);
-		var layers = document.getElementById('menu-ui');
-
-		addLayer(L.mapbox.tileLayer('examples.map-i87786ca'), 'Base Map', 1);
-		// addLayer(L.mapbox.tileLayer('examples.bike-lanes'), 'Bike Lanes', 2);
-		// addLayer(L.mapbox.tileLayer('examples.bike-locations'), 'Bike Stations', 3);
-
-		function addLayer(layer, name, zIndex) {
-		    layer
-		        .setZIndex(zIndex)
-		        .addTo(map);
-
-		    // Create a simple layer switcher that
-		    // toggles layers on and off.
-		    var link = document.createElement('a');
-		        link.href = '#';
-		        link.className = 'active';
-		        link.innerHTML = name;
-
-		    link.onclick = function(e) {
-		        e.preventDefault();
-		        e.stopPropagation();
-
-		        if (map.hasLayer(layer)) {
-		            map.removeLayer(layer);
-		            this.className = '';
-		        } else {
-		            map.addLayer(layer);
-		            this.className = 'active';
-		        }
-		    };
-
-		    layers.appendChild(link);
-		}
-	</script> -->
