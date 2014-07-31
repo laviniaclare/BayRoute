@@ -2,7 +2,7 @@
 var map = L.mapbox.map('map', 'laviniaclare.ina498lm');
 
 function displayRoutes(routes){
-	for (var i =0; i < routes.length; i++) {
+	for (var i = 0; i < routes.length; i++) {
 		var route_trips=routes[i];
 		displayTrips(route_trips);
 

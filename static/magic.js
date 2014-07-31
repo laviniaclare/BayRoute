@@ -43,7 +43,8 @@ function main() {
 
 		$('.multiselect').multiselect({
 			maxHeight:400,
-			enableFiltering: true
+			enableCaseInsensitiveFiltering: true,
+			filterPlaceholder: 'Type a route number or agency name'
 		});
 
 		$( "form" ).on( "submit", function( event ) {

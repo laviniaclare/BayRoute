@@ -51,13 +51,13 @@ def get_agency_name_dict():
 		'CE':'Ace Rail',
 		'CT':'CalTrain',
 		'DE':'Dumbarton Express',
-		'EM':'Emerygoround',
+		'EM':'Emerygoround (Free shuttle)',
 		'FS':'FAST Transit',
 		'GF':'Golden Gate Ferry',
 		'GG':'Golden Gate Transit',
 		'HF':'Alcatraz Cruises',
 		'MA':'Marin Transit',
-		'MS':'Marguerite Shuttle (Stanford)',
+		'MS':'Marguerite Shuttle (Free Stanford shuttle)',
 		'PE':'Petaluma Transit',
 		'RV':'Delta Breeze Transit (Rio Vista City)',
 		'SB':'San Francisco Bay Ferry',
@@ -72,7 +72,7 @@ def get_agency_name_dict():
 		'VN':'The Vine',
 		'WC':'WestCat',
 		'WH':'Wheels Bus',
-		'YV':'Yountville Trolley (Vine Transit)'
+		'YV':'Yountville Trolley (Free shuttle)'
 		}
 	# name=agencies_id_to_name[agency_id]
 	return agencies_id_to_name
