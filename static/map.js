@@ -1,10 +1,10 @@
-// Need to make this work wiht a list of lines that are fed to this page via the form selections
+
 var map = L.mapbox.map('map', 'laviniaclare.ina498lm');
 
 function displayRoutes(routes){
 	for (var i =0; i < routes.length; i++) {
-		var route_trips=routes[i]
-		displayTrips(route_trips)
+		var route_trips=routes[i];
+		displayTrips(route_trips);
 
 	}
 }
@@ -12,23 +12,22 @@ function displayRoutes(routes){
 function displayTrips(route_trips){
 	for (var key in route_trips) {
 		if (route_trips.hasOwnProperty(key)){
-			displayLines(route_trips[key])
+			displayLines(route_trips[key]);
 
 		}
 	}
 
 }
 
-function displayLines(routes_lat_longs){	
+function displayLines(routes_lat_longs){
 	var polyline_options = {
-  		color: '#F00'
+		color: '#F00'
 	};
 	var polyline = L.polyline(routes_lat_longs, polyline_options).addTo(map);
-	
 }
 
 function clearRoutes(){
-	
+
 }
 
 // var map = L.mapbox.map('map', 'laviniaclare.ina498lm');

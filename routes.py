@@ -1,12 +1,11 @@
-from flask import Flask, render_template, redirect, request, Response, session, url_for, jsonify
-from sqlalchemy.ext.declarative import DeclarativeMeta
+from flask import Flask, render_template, request, jsonify
 import model
 import json
 
 app = Flask(__name__)
 app.secret_key = '\xdd$j\x8dX\x19\xe69\x08"t/\'K\x1c\x1di"\'C\x8d*(\xd2'
 
-####Routes and stuff go here (@app.route())####
+
 @app.route('/', methods=['GET'])
 def load_options():
 	agencies_list=model.get_all_agencies()

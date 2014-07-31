@@ -6,8 +6,7 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import DateTime
 from sqlalchemy import ForeignKey
-from sqlalchemy import distinct
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship
 
 
 ENGINE = create_engine(os.environ.get("DATABASE_URL", "sqlite:///transit.db"), echo = False)
@@ -194,31 +193,15 @@ class Calender(Base):
 
 
 
-class Fair_attributes(Base):
-	__tablename__='gtfs_fair_attributes'
+class Fare_attributes(Base):
+	__tablename__='gtfs_fare_attributes'
 	fare_id=Column(Integer, primary_key=True)
 	price=Column(Integer)
 	currency_type=Column(String(10))
 	payment_method=Column(Integer)
 	transfers=Column(Integer)
 
-# class AlchemyEncoder(json.JSONEncoder):
-# 	def default(self, obj):
-# 		if isinstance(obj.__class__, DeclarativeMeta):
-# 			# an SQLAlchemy class
-# 			fields = {}
-# 			for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
-# 				data = obj.__getattribute__(field)
-# 				try:
-# 					json.dumps(data) # this will fail on non-encodable values, like other classes
-# 					fields[field] = data
-# 				except TypeError:
-# 					fields[field] = None
-# 				# a json-encodable dict
-			
-# 			return fields
 
-# 		return json.JSONEncoder.default(self, obj)
 
 def agency_to_routes_dict():
 	output={
