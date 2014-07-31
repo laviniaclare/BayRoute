@@ -19,6 +19,7 @@
 			<div class='btn-group'>
 				<select name='routes' class="multiselect" multiple="multiple">
 					{% for agency in agencies_list %}
+					<optgroup label="{{ agency_names[agency.agency_id] }}"></optgroup>
 
 						{% for route in agency_routes[agency.agency_id] %}
 							<option value="{{ agency_routes[agency.agency_id][route]['id'] }}">{{ agency_names[agency.agency_id] }}: {{ agency_routes[agency.agency_id][route]['name'] }}
