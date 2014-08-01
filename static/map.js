@@ -10,18 +10,19 @@ function displayRoutes(routes){
 }
 
 function displayTrips(route_trips){
+	lineColor='#'+Math.floor(Math.random()*16777215).toString(16);
 	for (var key in route_trips) {
 		if (route_trips.hasOwnProperty(key)){
-			displayLines(route_trips[key]);
+			displayLines(route_trips[key], lineColor);
 
 		}
 	}
 
 }
 
-function displayLines(routes_lat_longs){
+function displayLines(routes_lat_longs, lineColor){
 	var polyline_options = {
-		color: '#F00'
+		color: lineColor
 	};
 	var polyline = L.polyline(routes_lat_longs, polyline_options).addTo(map);
 }

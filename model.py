@@ -91,10 +91,19 @@ class Route(Base):
 		primaryjoin="Agency.agency_id==Route.agency_id")
 
 def get_route_trips(route_id):
-	trips=Session.query(Trip).filter_by(route_id=route_id).all()
+	trips=[]
+	trip1=Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=1).first()
+	trip2=Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=0).first()
+	if trip1:
+		trips.append(trip1)
+	if trip2:
+		trips.append(trip2)
+	#trips=Session.query(Trip).filter_by(route_id=route_id).all()
 	return trips
 
 def get_all_stops_on_route(route_id):
+	
+
 	trips=get_route_trips(route_id)       #<--- outputs list of trip objects in route
 
 	trip_ids=[]
