@@ -1,5 +1,4 @@
 import os
-import sys
 import re
 
 def generate_agency_list():
@@ -27,8 +26,6 @@ def generate_agency_list():
 
 
 def get_agency_files_sqlite():
-	system_names=[]
-	system_dicts_list=[]
 	transit_data=os.path.join('useful-docs/','GTFSTdata/')
 
 	print "cat gtfs_SQL_importer/src/gtfs_tables.sqlite \\"
