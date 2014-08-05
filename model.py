@@ -51,7 +51,7 @@ def get_agency_name_dict():
 		'CE':'Ace Rail',
 		'CT':'CalTrain',
 		'DE':'Dumbarton Express',
-		'EM':'Emerygoround (Free shuttle)',
+		'EM':'EmeryGoRound (Free shuttle)',
 		'FS':'FAST Transit',
 		'GF':'Golden Gate Ferry',
 		'GG':'Golden Gate Transit',
