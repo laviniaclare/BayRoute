@@ -22,7 +22,8 @@ function displayTrips(route_trips){
 
 function displayLines(routes_lat_longs, lineColor){
 	var polyline_options = {
-		color: lineColor
+		color: lineColor,
+		opacity: 80
 	};
 	var polyline = L.polyline(routes_lat_longs, polyline_options).addTo(map);
 }
