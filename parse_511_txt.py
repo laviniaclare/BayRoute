@@ -42,22 +42,10 @@ def get_agency_files_sqlite():
         
 	print "| sqlite3 Test.db"
 
-	# cat gtfs_tables.sqlite \
- #    <(python import_gtfs_to_sql.py path/to/gtfs/data/directory nocopy) \
- #    | sqlite3 ANewDatabase.db
 
-
-
-	#    cat gtfs_tables.sql \
- #    <(python import_gtfs_to_sql.py path/to/gtfs/data/directory) \
- #    gtfs_tables_makeindexes.sql \
- #    vacuumer.sql \
- #    | psql mydbname myusername
 
 
 def get_agency_files_psql():
-	system_names=[]
-	system_dicts_list=[]
 	transit_data=os.path.join('useful-docs/','GTFSTdata/')
 
 	print "cat gtfs_SQL_importer/src/gtfs_tables.sql \\"

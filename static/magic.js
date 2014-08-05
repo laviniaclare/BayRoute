@@ -32,10 +32,20 @@ function togglelines(e){
 	} else {
 		checklines(agency_id);
 	}
+
 }
+
+// function uncheckAll(){
+// 	console.log('clicked uncheck');
+// 	var l=$('option');
+// 	l.prop('checked', false);
+// 	console.log('unchecked all!');
+// }
 
 function main() {
 
+	// var uncheck=$('option[name=uncheck');
+	// 	uncheck.on('click', uncheckAll);
 
 	var s=$('input[name=agency]');
 	
@@ -66,7 +76,6 @@ function main() {
 
 			event.preventDefault();
 
-			//console.log( $( this ).serialize() );
 		});
 }
 

@@ -51,71 +51,7 @@ Systems_short_to_long={
 'YV':'Yountville Trolley (Vine Transit)'
 }
 
-# def fix_lingnames():
-# 	names=model.session.query(model.Agency).all()
-# 	for route_name in gtfs_agency:
-# 		if name in Systems_shortname_to_longname:
-# 			name=Systems_shortname_to_longname[name]
 
-
-
-# def make_tree():
-# 	tree=[]
-# 	agencies=model.get_all_agencies()
-# 	for agency in agencies:
-# 		agency_dict={}
-# 		agency_dict['agency_id']=agency.agency_id
-# 		agency_dict['routes']=[]
-# 		routes=model.get_agency_routes(agency.agency_id)
-# 		for route in routes:
-# 			route_dict={}
-# 			route_dict['route_id']=route.route_id
-# 			route_dict['route_name']=route.route_long_name
-# 			route_dict['route_type']=route.route_type
-# 			agency_dict['routes'].append(route_dict)
-# 		tree.append(agency_dict)
-# 	print tree
-
-
-def make_tree():
-	tree={}
-	agencies=model.get_all_agencies()
-	for agency in agencies:
-		agency_id=agency.agency_id
-		tree[agency_id]={}
-		routes=model.get_agency_routes(agency_id)
-		route_dict=tree[agency_id]
-		for route in routes:
-			route_id=route.route_id
-			route_dict[route_id]={}
-			route_info=route_dict[route_id]
-			route_info['name']=route.route_long_name
-			route_info['type']=route.route_type
-			route_info['id']=route.route_id
-			route_info['route_trips']={}
-			trips=model.get_route_trips(route.route_id)
-			trip_dict=route_info['route_trips']
-			for trip in trips:
-				trip_id=trip.trip_id
-				trip_dict[trip_id]={}
-				trip_info=trip_dict[trip_id]
-
-				trip_info['route_id']=route_id
-				trip_info['service_id']=trip.service_id
-				trip_info['trip_headsign']=trip.trip_headsign
-				# stops=model.get_trip_stops(trip_id)
-			# 	for stop in stops:
-			# 		stops_dict['sequence']=stop.stop_sequence
-			# 		stops_dict['stop_id']=stop.stop_id
-
-			# 		stop=model.get_stop_by_id(stop.stop_id)
-			# 		stops_dict['stop_name']=stop.stop_name
-			# 		lat_long=model.get_stop_lat_long(stop.stop_id)
-			# 		stops_dict['lat_long']=lat_long
-	print tree
-
-
-#make_tree()
 
 def agency_routes_dict():
 	output={}
