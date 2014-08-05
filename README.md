@@ -4,3 +4,7 @@ BayRoute is an interactive map that allows users to select and view routes from 
 
 ##Tech Stack
 BayRoute is built using Python with a Flask framework and a Postgresql database.  All data was acquired from 511.org. The front end was built with the Mapbox API, including the mapbox.js library.  Bootstrap multi select was used to construct the user interface. Also used: JQuery, AJAX, Jinja, HTML, CSS, Regular Expressions.
+
+##How to use
+First, in order to run this on your local machine you need to get access to the [511.org Transit Data Feed](http://www.511.org/developer-resources_transit-data-feed.asp).  
+
