@@ -1,17 +1,4 @@
 import model
-import csv
-import sqlalchemy
-
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Float
-
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import DateTime
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship, backref
-
-# import sqlalchemy.dialects.postgresql.json as json
 
 
 Systems_short_to_long={
