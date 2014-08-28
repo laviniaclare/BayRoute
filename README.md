@@ -6,7 +6,7 @@ BayRoute is an interactive map that allows users to select and view routes from 
 BayRoute is built using Python with a Flask framework and a Postgresql database.  All data was acquired from 511.org. The front end was built with the Mapbox API, including the mapbox.js library.  Bootstrap multi select was used to construct the user interface. Also used: JQuery, AJAX, Jinja, HTML, and CSS.
 
 ##Running the Code at Home
-First off, I don't recommend trying to run this on your own computer because the database is too big to put on Github.  Which means that in order to run BayRoute from your computer you will first have to get all the data from 511.org, and then put it into a PostgreSQL database.  Which is a pain in the ass.  However, if you *really* want to play BayRoute yourself and see what it does follow the instructions below.
+First off, I don't recommend trying to run this on your own computer because the database is too big to put on Github.  Which means that in order to run BayRoute from your computer you will first have to get all the data from 511.org, and then put it into a PostgreSQL database.  Which is a pain in the ass.  However, if you *really* want to play with BayRoute yourself and see what it does follow the instructions below.
 
 ####Step one: Getting the Data.
 1. Go download the [Static Transit Data Feed Agreement](http://511.org/developer-resources_transit-data-feed.asp) from 511.org.
@@ -19,5 +19,15 @@ Now you have the data, it's time to put it into a usable format.  We're going to
 
 ####Step two: Putting the data into a database.
 
-I used a modified version of a handy piece of code called [gtfs_SQL_importer](https://github.com/cbick/gtfs_SQL_importer) written by [cbick](https://github.com/cbick).  The code makes a database for each agency in the 511.org data set.  I wanted one database with all the agencies, so I had make a few modifactions to make that happen, and to avoind primary key conflicts.  The modified verson that I used is included in this repo. 
+I used a modified version of a handy piece of code called [gtfs_SQL_importer](https://github.com/cbick/gtfs_SQL_importer) written by [cbick](https://github.com/cbick).  The orginal code makes a database for each agency in the 511.org data set.  I wanted one database with all the agencies, so I had make a few modifactions to make that happen, and to avoind primary key conflicts.  The modified verson that I used is included in this repo. 
+
+1. If you haven't already, clone the BayRoute repo onto your local machine, make a [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/) and run the rquirements.txt file in your terminal (make sure you are in the correct directory and that your virtual environment is activated first, of course).
+2. Make a file in your local version of the BayRoute repo called "useful-docs", and put GTFSTdata file you got from 511.org into that file.  Also, If you don't already have PostgreSQL on your local machine you should [download](http://www.postgresql.org/download/) it now.  Make sure it's running properly and everything then go on to the next step.
+3. In your terminal run parse_511_txt.py.  This will create a PostgreSQL with all the data in it called "transit".
+4. Open the "transit" database in PostgreSQL in your terminal (type "psql transit").
+5. Copy the text from the file called "psql_indexes.sql" into your terminal.  This should create an index in the datatbase that makes some queries faster.
+
+And now you should have a working database with all the correct data.  Yay!
+
+
 
