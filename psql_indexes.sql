@@ -1,0 +1,1 @@
+CREATE INDEX ON gtfs_trips (route_id);
