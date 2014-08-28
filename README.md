@@ -31,4 +31,10 @@ And now you should have a working database with all the correct data.  Yay!
 
 ####Step three: Actually running BayRoute on your local machine
 
+This is the easy part. 
+
+1. In your terminal, run "routes.py".  Make sure you're in the correct directory and all that first, of course.
+2. Paste the address its running on into your browser.
+3. 
+
 
