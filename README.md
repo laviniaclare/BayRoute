@@ -35,6 +35,10 @@ This is the easy part.
 
 1. In your terminal, run "routes.py".  Make sure you're in the correct directory and all that first, of course.
 2. Paste the address its running on into your browser.
-3. 
+3. You should see something like the pictures in the "Screen-Shots" folder.
+
+####Step four: jk, there are no more steps.  Just have fun.
+
+You can use the search bar in the menu to search for routes or agencies you are interested in seeing.  If you type in letters you will get mostly agencies.  If you type in numbers you will get all routes containing those digits.  I like to just scroll around and find transit sytems I've never heard of and check a bunch of boxes to see where they are.  If you type "free" in the search bar, you will get some of the free transit options around the Bay Area. 
 
 
