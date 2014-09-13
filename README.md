@@ -2,6 +2,13 @@
 
 BayRoute is an interactive map that allows users to select and view routes from various transit systems in the Bay Area.  When a transit line is selected, the entire route is displayed on the map, helping users visualize what destinations are accessible to them via public transportation.  Includes route data for all buses, shuttles, ferries and commuter trains in the 511.org data base.  Growing up in the Bay Area I was frequently frustrated with the lack of a unified transit map.  This project was my solution to that frustration. 
 
+Screen shot showing dropdown selection by word search.
+![alt text](https://github.com/laviniaclare/BayRoute/blob/master/Screen-Shots/Screen%20Shot%202014-08-05%20at%204.30.18%20PM.png)
+Options can also be filtered by typing a route number in to the text search bar.
+![alt text](https://github.com/laviniaclare/BayRoute/blob/master/Screen-Shots/Screen%20Shot%202014-08-05%20at%204.30.58%20PM.png)
+Showing selection of all lines in the BART system.
+![alt text](https://github.com/laviniaclare/BayRoute/blob/master/Screen-Shots/Screen%20Shot%202014-08-05%20at%205.01.48%20PM.png)
+
 ##Tech Stack
 BayRoute is built using Python with a Flask framework and a Postgresql database.  All data was acquired from 511.org. The front end was built with the Mapbox API, including the mapbox.js library.  Bootstrap multi select was used to construct the user interface. Also used: JQuery, AJAX, Jinja, HTML, and CSS.
 
