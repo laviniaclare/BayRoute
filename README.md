@@ -17,7 +17,7 @@ First off, I don't recommend trying to run this on your own computer because the
 
 ####Step one: Getting the Data.
 1. Go download the [Static Transit Data Feed Agreement](http://511.org/developer-resources_transit-data-feed.asp) from 511.org.
-2. Print the form an fill it out
+2. Print the form and fill it out
 3. Mail the form back to 511.org (the address and instructions should be on the form and on the 511.org website as well)
 4. Wait for 511.org to email you.  It took less than a week for me, but ymmv.
 5. Once 511.org approves you for access to the data they will send you a bunch of CSV files.  For this project you want to use the ones in [General Transit Feed Specifications](https://developers.google.com/transit/gtfs/) format.  They will be in the GTFSdata file.  
