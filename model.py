@@ -181,259 +181,255 @@ def get_stop_lat_long(stop_id):
     return lat_long
 
 
-
-
 class Calender(Base):
-    __tablename__=('gtfs_calender')
+    __tablename__ = ('gtfs_calender')
 
-    service_id=Column(Integer, primary_key=True)
-    monday=Column(Integer)
-    tuesday=Column(Integer)
-    wednesday=Column(Integer)
-    thursday=Column(Integer)
-    friday=Column(Integer)
-    saturday=Column(Integer)
-    sunday=Column(Integer)
-    start_date=Column(Integer)
-    end_date=Column(Integer)
-
+    service_id = Column(Integer, primary_key=True)
+    monday = Column(Integer)
+    tuesday = Column(Integer)
+    wednesday = Column(Integer)
+    thursday = Column(Integer)
+    friday = Column(Integer)
+    saturday = Column(Integer)
+    sunday = Column(Integer)
+    start_date = Column(Integer)
+    end_date = Column(Integer)
 
 
 class Fare_attributes(Base):
-    __tablename__='gtfs_fare_attributes'
-    fare_id=Column(Integer, primary_key=True)
-    price=Column(Integer)
-    currency_type=Column(String(10))
-    payment_method=Column(Integer)
-    transfers=Column(Integer)
-
+    __tablename__ = 'gtfs_fare_attributes'
+    fare_id = Column(Integer, primary_key=True)
+    price = Column(Integer)
+    currency_type = Column(String(10))
+    payment_method = Column(Integer)
+    transfers = Column(Integer)
 
 
 def agency_to_routes_dict():
-    output={
-      'FS': {
-        'FS_30': {
-          'name': '30',
-          'id': 'FS_30'
+    output = {
+        'FS': {
+            'FS_30': {
+                'name': '30',
+                'id': 'FS_30'
+            },
+            'FS_1': {
+                'name': '1',
+                'id': 'FS_1'
+            },
+            'FS_2': {
+                'name': '2',
+                'id': 'FS_2'
+            },
+            'FS_3': {
+                'name': '3',
+                'id': 'FS_3'
+            },
+            'FS_4': {
+                'name': '4',
+                'id': 'FS_4'
+            },
+            'FS_5': {
+                'name': '5',
+                'id': 'FS_5'
+            },
+            'FS_6': {
+                'name': '6',
+                'id': 'FS_6'
+            },
+            'FS_20': {
+                'name': '20',
+                'id': 'FS_20'
+            },
+            'FS_8': {
+                'name': '8',
+                'id': 'FS_8'
+            },
+            'FS_7': {
+                'name': '7',
+                'id': 'FS_7'
+            },
+            'FS_90': {
+                'name': '90',
+                'id': 'FS_90'
+            },
+            'FS_40': {
+                'name': '40',
+                'id': 'FS_40'
+            },
+            'FS_Travis AFB': {
+                'name': 'Travis AFB',
+                'id': 'FS_Travis AFB'
+            },
+            'FS_7T': {
+                'name': '7T',
+                'id': 'FS_7T'
+            }
         },
-        'FS_1': {
-          'name': '1',
-          'id': 'FS_1'
+        'WC': {
+            'WC_17': {
+                'name': '17',
+                'id': 'WC_17'
+            },
+            'WC_LYNX': {
+                'name': 'LYNX',
+                'id': 'WC_LYNX'
+            },
+            'WC_JL': {
+                'name': 'JL',
+                'id': 'WC_JL'
+            },
+            'WC_JR': {
+                'name': 'JR',
+                'id': 'WC_JR'
+            },
+            'WC_16': {
+                'name': '16',
+                'id': 'WC_16'
+            },
+            'WC_15': {
+                'name': '15',
+                'id': 'WC_15'
+            },
+            'WC_12': {
+                'name': '12',
+                'id': 'WC_12'
+            },
+            'WC_11': {
+                'name': '11',
+                'id': 'WC_11'
+            },
+            'WC_10': {
+                'name': '10',
+                'id': 'WC_10'
+            },
+            'WC_30Z': {
+                'name': '30Z',
+                'id': 'WC_30Z'
+            },
+            'WC_C3': {
+                'name': 'C3',
+                'id': 'WC_C3'
+            },
+            'WC_JPX': {
+                'name': 'JPX',
+                'id': 'WC_JPX'
+            },
+            'WC_JX': {
+                'name': 'JX',
+                'id': 'WC_JX'
+            },
+            'WC_19': {
+                'name': '19',
+                'id': 'WC_19'
+            },
+            'WC_18': {
+                'name': '18',
+                'id': 'WC_18'
+            }
         },
-        'FS_2': {
-          'name': '2',
-          'id': 'FS_2'
+        'BA': {
+            'BA_MILL/RICH': {
+                'name': 'MILL/RICH',
+                'id': 'BA_MILL/RICH'
+            },
+            'BA_FREMONT/DALY': {
+                'name': 'FREMONT/DALY',
+                'id': 'BA_FREMONT/DALY'
+            },
+            'BA_DUBLIN/DALY': {
+                'name': 'DUBLIN/DALY',
+                'id': 'BA_DUBLIN/DALY'
+            },
+            'BA_DALY/FREMONT': {
+                'name': 'DALY/FREMONT',
+                'id': 'BA_DALY/FREMONT'
+            },
+            'BA_RICH/MILL': {
+                'name': 'RICH/MILL',
+                'id': 'BA_RICH/MILL'
+            },
+            'BA_BAY PT/SFIA': {
+                'name': 'BAY PT/SFIA',
+                'id': 'BA_BAY PT/SFIA'
+            },
+            'BA_SFIA/BAY PT': {
+                'name': 'SFIA/BAY PT',
+                'id': 'BA_SFIA/BAY PT'
+            },
+            'BA_RICH/FREMONT': {
+                'name': 'RICH/FREMONT',
+                'id': 'BA_RICH/FREMONT'
+            },
+            'BA_FREMONT/RICH': {
+                'name': 'FREMONT/RICH',
+                'id': 'BA_FREMONT/RICH'
+            },
+            'BA_DALY/DUBLIN': {
+                'name': 'DALY/DUBLIN',
+                'id': 'BA_DALY/DUBLIN'
+            }
         },
-        'FS_3': {
-          'name': '3',
-          'id': 'FS_3'
+        'DE': {
+            'DE_DB1': {
+                'name': 'DB1',
+                'id': 'DE_DB1'
+            },
+            'DE_DB': {
+                'name': 'DB',
+                'id': 'DE_DB'
+            }
         },
-        'FS_4': {
-          'name': '4',
-          'id': 'FS_4'
+        'VC': {
+            'VC_1': {
+                'name': '1',
+                'id': 'VC_1'
+            },
+            'VC_2': {
+                'name': '2',
+                'id': 'VC_2'
+            },
+            'VC_4': {
+                'name': '4',
+                'id': 'VC_4'
+            },
+            'VC_5': {
+                'name': '5',
+                'id': 'VC_5'
+            },
+            'VC_6': {
+                'name': '6',
+                'id': 'VC_6'
+            },
+            'VC_8': {
+                'name': '8',
+                'id': 'VC_8'
+            }
         },
-        'FS_5': {
-          'name': '5',
-          'id': 'FS_5'
-        },
-        'FS_6': {
-          'name': '6',
-          'id': 'FS_6'
-        },
-        'FS_20': {
-          'name': '20',
-          'id': 'FS_20'
-        },
-        'FS_8': {
-          'name': '8',
-          'id': 'FS_8'
-        },
-        'FS_7': {
-          'name': '7',
-          'id': 'FS_7'
-        },
-        'FS_90': {
-          'name': '90',
-          'id': 'FS_90'
-        },
-        'FS_40': {
-          'name': '40',
-          'id': 'FS_40'
-        },
-        'FS_Travis AFB': {
-          'name': 'Travis AFB',
-          'id': 'FS_Travis AFB'
-        },
-        'FS_7T': {
-          'name': '7T',
-          'id': 'FS_7T'
-        }
-      },
-      'WC': {
-        'WC_17': {
-          'name': '17',
-          'id': 'WC_17'
-        },
-        'WC_LYNX': {
-          'name': 'LYNX',
-          'id': 'WC_LYNX'
-        },
-        'WC_JL': {
-          'name': 'JL',
-          'id': 'WC_JL'
-        },
-        'WC_JR': {
-          'name': 'JR',
-          'id': 'WC_JR'
-        },
-        'WC_16': {
-          'name': '16',
-          'id': 'WC_16'
-        },
-        'WC_15': {
-          'name': '15',
-          'id': 'WC_15'
-        },
-        'WC_12': {
-          'name': '12',
-          'id': 'WC_12'
-        },
-        'WC_11': {
-          'name': '11',
-          'id': 'WC_11'
-        },
-        'WC_10': {
-          'name': '10',
-          'id': 'WC_10'
-        },
-        'WC_30Z': {
-          'name': '30Z',
-          'id': 'WC_30Z'
-        },
-        'WC_C3': {
-          'name': 'C3',
-          'id': 'WC_C3'
-        },
-        'WC_JPX': {
-          'name': 'JPX',
-          'id': 'WC_JPX'
-        },
-        'WC_JX': {
-          'name': 'JX',
-          'id': 'WC_JX'
-        },
-        'WC_19': {
-          'name': '19',
-          'id': 'WC_19'
-        },
-        'WC_18': {
-          'name': '18',
-          'id': 'WC_18'
-        }
-      },
-      'BA': {
-        'BA_MILL/RICH': {
-          'name': 'MILL/RICH',
-          'id': 'BA_MILL/RICH'
-        },
-        'BA_FREMONT/DALY': {
-          'name': 'FREMONT/DALY',
-          'id': 'BA_FREMONT/DALY'
-        },
-        'BA_DUBLIN/DALY': {
-          'name': 'DUBLIN/DALY',
-          'id': 'BA_DUBLIN/DALY'
-        },
-        'BA_DALY/FREMONT': {
-          'name': 'DALY/FREMONT',
-          'id': 'BA_DALY/FREMONT'
-        },
-        'BA_RICH/MILL': {
-          'name': 'RICH/MILL',
-          'id': 'BA_RICH/MILL'
-        },
-        'BA_BAY PT/SFIA': {
-          'name': 'BAY PT/SFIA',
-          'id': 'BA_BAY PT/SFIA'
-        },
-        'BA_SFIA/BAY PT': {
-          'name': 'SFIA/BAY PT',
-          'id': 'BA_SFIA/BAY PT'
-        },
-        'BA_RICH/FREMONT': {
-          'name': 'RICH/FREMONT',
-          'id': 'BA_RICH/FREMONT'
-        },
-        'BA_FREMONT/RICH': {
-          'name': 'FREMONT/RICH',
-          'id': 'BA_FREMONT/RICH'
-        },
-        'BA_DALY/DUBLIN': {
-          'name': 'DALY/DUBLIN',
-          'id': 'BA_DALY/DUBLIN'
-        }
-      },
-      'DE': {
-        'DE_DB1': {
-          'name': 'DB1',
-          'id': 'DE_DB1'
-        },
-        'DE_DB': {
-          'name': 'DB',
-          'id': 'DE_DB'
-        }
-      },
-      'VC': {
-        'VC_1': {
-          'name': '1',
-          'id': 'VC_1'
-        },
-        'VC_2': {
-          'name': '2',
-          'id': 'VC_2'
-        },
-        'VC_4': {
-          'name': '4',
-          'id': 'VC_4'
-        },
-        'VC_5': {
-          'name': '5',
-          'id': 'VC_5'
-        },
-        'VC_6': {
-          'name': '6',
-          'id': 'VC_6'
-        },
-        'VC_8': {
-          'name': '8',
-          'id': 'VC_8'
-        }
-      },
-      'WH': {
-        'WH_601': {
-          'name': '601',
-          'id': 'WH_601'
-        },
-        'WH_602': {
-          'name': '602',
-          'id': 'WH_602'
-        },
-        'WH_604': {
-          'name': '604',
-          'id': 'WH_604'
-        },
-        'WH_8': {
-          'name': '8',
-          'id': 'WH_8'
-        },
-        'WH_9': {
-          'name': '9',
-          'id': 'WH_9'
-        },
-        'WH_403': {
-          'name': '403',
-          'id': 'WH_403'
-        },
+        'WH': {
+            'WH_601': {
+                'name': '601',
+                'id': 'WH_601'
+            },
+            'WH_602': {
+                'name': '602',
+                'id': 'WH_602'
+            },
+            'WH_604': {
+                'name': '604',
+                'id': 'WH_604'
+            },
+            'WH_8': {
+                'name': '8',
+                'id': 'WH_8'
+            },
+            'WH_9': {
+                'name': '9',
+                'id': 'WH_9'
+            },
+            'WH_403': {
+                'name': '403',
+                'id': 'WH_403'
+            },
         'WH_70X': {
           'name': '70X',
           'id': 'WH_70X'
@@ -2829,6 +2825,3 @@ def agency_to_routes_dict():
       }
     }
     return output
-
-
-
