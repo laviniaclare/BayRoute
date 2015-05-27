@@ -35,17 +35,17 @@ function togglelines(e){
 
 }
 
-// function uncheckAll(){
-// 	console.log('clicked uncheck');
-// 	var l=$('option');
-// 	l.prop('checked', false);
-// 	console.log('unchecked all!');
+//function uncheckAll(){
+//		console.log('clicked uncheck');
+//		var l=$('option');
+//		l.prop('checked', false);
+//		console.log('unchecked all!');
 // }
 
 function main() {
 
 	// var uncheck=$('option[name=uncheck');
-	// 	uncheck.on('click', uncheckAll);
+	// uncheck.on('click', uncheckAll);
 
 	var s=$('input[name=agency]');
 	
