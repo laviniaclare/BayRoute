@@ -79,22 +79,22 @@ def get_agency_name_dict():
     return agencies_id_to_name
 
 
-
 class Route(Base):
-    __tablename__='gtfs_routes'
-    route_id = Column(String(10), primary_key = True)
-    route_short_name = Column(String(10), nullable = True)
+    __tablename__ = 'gtfs_routes'
+    route_id = Column(String(10), primary_key=True)
+    route_short_name = Column(String(10), nullable=True)
     route_long_name = Column(String(30), nullable=True)
     route_type = Column(Integer, nullable=True)
-    agency_id=Column(Integer, ForeignKey('gtfs_agency.agency_id'))
+    agency_id = Column(Integer, ForeignKey('gtfs_agency.agency_id'))
 
     agency = relationship("Agency",
-        primaryjoin="Agency.agency_id==Route.agency_id")
+                          primaryjoin="Agency.agency_id==Route.agency_id")
+
 
 def get_route_trips(route_id):
-    trips=[]
-    trip1=Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=1).first()
-    trip2=Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=0).first()
+    trips = []
+    trip1 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=1).first()
+    trip2 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=0).first()
     if trip1:
         trips.append(trip1)
     if trip2:
@@ -102,84 +102,80 @@ def get_route_trips(route_id):
     #trips=Session.query(Trip).filter_by(route_id=route_id).all()
     return trips
 
+
 def get_all_stops_on_route(route_id):
-    
+    trips = get_route_trips(route_id)      #<--- outputs list of trip objects in route
+    trip_ids = []
 
-    trips=get_route_trips(route_id)       #<--- outputs list of trip objects in route
-
-    trip_ids=[]
     for trip in trips:
         trip_ids.append(trip.trip_id)     #putting all the trip_ids into a list
-    
-    stop_times=get_stops_by_trip_ids(trip_ids)
-    lat_longs_on_route={}
+
+    stop_times = get_stops_by_trip_ids(trip_ids)
+    lat_longs_on_route = {}
     for stop_time in stop_times:
         if not stop_time.trip_id in lat_longs_on_route.keys():
-            lat_longs_on_route[stop_time.trip_id]=[]
-        lat=stop_time.stop.stop_lat
-        lon=stop_time.stop.stop_lon
-        lat_longs_on_route[stop_time.trip_id].append([lat,lon])
+            lat_longs_on_route[stop_time.trip_id] = []
+        lat = stop_time.stop.stop_lat
+        lon = stop_time.stop.stop_lon
+        lat_longs_on_route[stop_time.trip_id].append([lat, lon])
 
-    return lat_longs_on_route 
+    return lat_longs_on_route
 
 
 class Trip(Base):
-    __tablename__='gtfs_trips'
-    trip_id=Column(Integer, primary_key=True)
-    service_id= Column(Integer, nullable=True)
-    trip_headsign=Column(String(10), nullable=True)
-    direction_id=Column(Integer, nullable=True)
-    route_id=Column(Integer, ForeignKey('gtfs_routes.route_id'))
-    direction_id=Column(Integer, nullable=True)
-
+    __tablename__ = 'gtfs_trips'
+    trip_id = Column(Integer, primary_key=True)
+    service_id = Column(Integer, nullable=True)
+    trip_headsign = Column(String(10), nullable=True)
+    direction_id = Column(Integer, nullable=True)
+    route_id = Column(Integer, ForeignKey('gtfs_routes.route_id'))
+    direction_id = Column(Integer, nullable=True)
 
     route = relationship("Route",
-        primaryjoin="Route.route_id==Trip.route_id")
-
-
+                         primaryjoin="Route.route_id==Trip.route_id")
 
 
 class Stop_Time(Base):
-    __tablename__='gtfs_stop_times'
+    __tablename__ = 'gtfs_stop_times'
     trip_id = Column(Integer, ForeignKey('gtfs_trips.trip_id'), primary_key=True)
     stop_id = Column(Integer, ForeignKey('gtfs_stops.stop_id'), primary_key=True)
-    stop_sequence=Column(Integer, primary_key=True)
-    arrival_time=Column(String(30))
-    departure_time=Column(String(30))
+    stop_sequence = Column(Integer, primary_key=True)
+    arrival_time = Column(String(30))
+    departure_time = Column(String(30))
 
     trip = relationship("Trip",
-            primaryjoin="Trip.trip_id==Stop_Time.trip_id")
+                        primaryjoin="Trip.trip_id==Stop_Time.trip_id")
 
-    stop = relationship("Stop", 
-        primaryjoin="Stop.stop_id==Stop_Time.stop_id")
+    stop = relationship("Stop",
+                        primaryjoin="Stop.stop_id==Stop_Time.stop_id")
 
 
-def get_stops_by_trip_ids(trip_ids):    
-    stop_time_objects=Session.query(Stop_Time).filter(Stop_Time.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
+def get_stops_by_trip_ids(trip_ids):
+    stop_time_objects = Session.query(Stop_Time).filter(Stop_Time.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
     return stop_time_objects
-    
 
 
 class Stop(Base):
-    __tablename__='gtfs_stops'
-    stop_id = Column(Integer, primary_key = True)
-    stop_name = Column(String, nullable = True)
+    __tablename__ = 'gtfs_stops'
+    stop_id = Column(Integer, primary_key=True)
+    stop_name = Column(String, nullable=True)
     stop_lat = Column(Float)
-    stop_lon=Column(Float)
-    zone_id=Column(Integer, nullable=True)
+    stop_lon = Column(Float)
+    zone_id = Column(Integer, nullable=True)
+
 
 def get_stop_by_id(stop_id):
-    stop=Session.query(Stop).filter_by(stop_id=stop_id).all()
-    stop=stop[0]
+    stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
+    stop = stop[0]
     return stop
 
 
 def get_stop_lat_long(stop_id):
-    lat_long=[]
-    stop=Session.query(Stop).filter_by(stop_id=stop_id).all()
-    stop=stop[0]
-    lat=stop.stop_lat
-    lon=stop.stop_lon
+    lat_long = []
+    stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
+    stop = stop[0]
+    lat = stop.stop_lat
+    lon = stop.stop_lon
     lat_long.append(lat)
     lat_long.append(lon)
     return lat_long
