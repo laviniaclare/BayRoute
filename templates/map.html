@@ -12,13 +12,11 @@
 	</head>
 
 	<body>
-		<div id='spinner'></div>
 		
 		<form action='/api/routes' class='filters' method='GET'>
 			
 			<div class='btn-group'>
 				<select name='routes' class="multiselect" multiple="multiple">
-					<!-- <option name = 'uncheck' label="uncheck all"></option> -->
 					{% for agency in agencies_list %}
 					<optgroup label="{{ agency_names[agency.agency_id] }}"></optgroup>
 
