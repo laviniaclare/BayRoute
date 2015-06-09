@@ -504,108 +504,108 @@ def agency_to_routes_dict():
             }
         },
         'BG': {
-        'BG_1': {
-          'name': 'TIBURON',
-          'id': 'BG_1'
+            'BG_1': {
+                'name': 'TIBURON',
+                'id': 'BG_1'
+            },
+            'BG_2': {
+                'name': 'ANGEL ISLAND',
+                'id': 'BG_2'
+            },
+            'BG_SAUSALITO': {
+                'name': 'SAUSALITO',
+                'id': 'BG_SAUSALITO'
+            }
         },
-        'BG_2': {
-          'name': 'ANGEL ISLAND',
-          'id': 'BG_2'
+        'HF': {
+            'HF_Early Bird': {
+                'name': 'Early Bird',
+                'id': 'HF_Early Bird'
+            },
+            'HF_Night Tour': {
+                'name': 'Night Tour',
+                'id': 'HF_Night Tour'
+            },
+            'HF_Day Tour': {
+                'name': 'Day Tour',
+                'id': 'HF_Day Tour'
+            }
         },
-        'BG_SAUSALITO': {
-          'name': 'SAUSALITO',
-          'id': 'BG_SAUSALITO'
-        }
-      },
-      'HF': {
-        'HF_Early Bird': {
-          'name': 'Early Bird',
-          'id': 'HF_Early Bird'
+        '3D': {
+            '3D_395': {
+                'name': '395',
+                'id': '3D_395'
+            },
+            '3D_300': {
+                'name': '300',
+                'id': '3D_300'
+            },
+            '3D_391': {
+                'name': '391',
+                'id': '3D_391'
+            },
+            '3D_392': {
+                'name': '392',
+                'id': '3D_392'
+            },
+            '3D_393': {
+                'name': '393',
+                'id': '3D_393'
+            },
+            '3D_383': {
+                'name': '383',
+                'id': '3D_383'
+            },
+            '3D_201': {
+                'name': '201',
+                'id': '3D_201'
+            },
+            '3D_394': {
+                'name': '394',
+                'id': '3D_394'
+            },
+            '3D_389': {
+                'name': '389',
+                'id': '3D_389'
+            },
+            '3D_388': {
+                'name': '388',
+                'id': '3D_388'
+            },
+            '3D_385': {
+                'name': '385',
+                'id': '3D_385'
+            },
+            '3D_387': {
+                'name': '387',
+                'id': '3D_387'
+            },
+            '3D_386': {
+                'name': '386',
+                'id': '3D_386'
+            },
+            '3D_200': {
+                'name': '200',
+                'id': '3D_200'
+            },
+            '3D_379': {
+                'name': '379',
+                'id': '3D_379'
+            },
+            '3D_390': {
+                'name': '390',
+                'id': '3D_390'
+            },
+            '3D_380': {
+                'name': '380',
+                'id': '3D_380'
+            }
         },
-        'HF_Night Tour': {
-          'name': 'Night Tour',
-          'id': 'HF_Night Tour'
-        },
-        'HF_Day Tour': {
-          'name': 'Day Tour',
-          'id': 'HF_Day Tour'
-        }
-      },
-      '3D': {
-        '3D_395': {
-          'name': '395',
-          'id': '3D_395'
-        },
-        '3D_300': {
-          'name': '300',
-          'id': '3D_300'
-        },
-        '3D_391': {
-          'name': '391',
-          'id': '3D_391'
-        },
-        '3D_392': {
-          'name': '392',
-          'id': '3D_392'
-        },
-        '3D_393': {
-          'name': '393',
-          'id': '3D_393'
-        },
-        '3D_383': {
-          'name': '383',
-          'id': '3D_383'
-        },
-        '3D_201': {
-          'name': '201',
-          'id': '3D_201'
-        },
-        '3D_394': {
-          'name': '394',
-          'id': '3D_394'
-        },
-        '3D_389': {
-          'name': '389',
-          'id': '3D_389'
-        },
-        '3D_388': {
-          'name': '388',
-          'id': '3D_388'
-        },
-        '3D_385': {
-          'name': '385',
-          'id': '3D_385'
-        },
-        '3D_387': {
-          'name': '387',
-          'id': '3D_387'
-        },
-        '3D_386': {
-          'name': '386',
-          'id': '3D_386'
-        },
-        '3D_200': {
-          'name': '200',
-          'id': '3D_200'
-        },
-        '3D_379': {
-          'name': '379',
-          'id': '3D_379'
-        },
-        '3D_390': {
-          'name': '390',
-          'id': '3D_390'
-        },
-        '3D_380': {
-          'name': '380',
-          'id': '3D_380'
-        }
-      },
-      'RV': {
-        'RV_50': {
-          'name': '50',
-          'id': 'RV_50'
-        },
+        'RV': {
+            'RV_50': {
+                'name': '50',
+                'id': 'RV_50'
+            },
         'RV_52': {
           'name': '52',
           'id': 'RV_52'
