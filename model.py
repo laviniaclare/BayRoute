@@ -39,43 +39,42 @@ def get_all_agencies():
 
 
 def get_agency_name_dict():
-    agencies    _id_to_name = {
-                '3D': 'Tridelta Transit',
-                      'AB': 'AirBART',
-                            'AC': 'AC Transit',
-                            'AM': 'Capitol Corridor',
-                            'AT': 'Angel Island Ferry',
-                            'AY': 'American Canyon Transit (Vine Transit)',
-                            'BA': 'BART',
-                            'BG': 'Blue and Gold Fleet',
-                            'CC': 'County Connection',
-                            'CE': 'Ace Rail',
-                            'CT': 'CalTrain',
-                            'DE': 'Dumbarton Express',
-                            'EM': 'EmeryGoRound (Free shuttle)',
-                            'FS': 'FAST Transit',
-                            'GF': 'Golden Gate Ferry',
-                            'GG': 'Golden Gate Transit',
-                            'HF': 'Alcatraz Cruises',
-                            'MA': 'Marin Transit',
-                            'MS': 'Marguerite Shuttle (Free Stanford shuttle)',
-                            'PE': 'Petaluma Transit',
-                            'RV': 'Delta Breeze Transit (Rio Vista City)',
-                            'SB': 'San Francisco Bay Ferry',
-                            'SC': 'Vally Transportation Authority',
-                            'SF': 'SFMTA (Muni)',
-                            'SM': 'SamTrans',
-                            'SO': 'Sonoma County Transit',
-                            'SR': 'CityBus (Santa Rosa)',
-                            'ST': 'Soltrans',
-                            'UC': 'Union City Transit',
-                            'VC': 'City Coach',
-                            'VN': 'The Vine',
-                            'WC': 'WestCat',
-                            'WH': 'Wheels Bus',
-                        'YV': 'Yountville Trolley (Free shuttle)'
-                    }
-    # n    ame=  agencies_id_to_name[agency_id]
+    agencies_id_to_name = {'3D': 'Tridelta Transit',
+                           'AB': 'AirBART',
+                           'AC': 'AC Transit',
+                           'AM': 'Capitol Corridor',
+                           'AT': 'Angel Island Ferry',
+                           'AY': 'American Canyon Transit (Vine Transit)',
+                           'BA': 'BART',
+                           'BG': 'Blue and Gold Fleet',
+                           'CC': 'County Connection',
+                           'CE': 'Ace Rail',
+                           'CT': 'CalTrain',
+                           'DE': 'Dumbarton Express',
+                           'EM': 'EmeryGoRound (Free shuttle)',
+                           'FS': 'FAST Transit',
+                           'GF': 'Golden Gate Ferry',
+                           'GG': 'Golden Gate Transit',
+                           'HF': 'Alcatraz Cruises',
+                           'MA': 'Marin Transit',
+                           'MS': 'Marguerite Shuttle (Free Stanford shuttle)',
+                           'PE': 'Petaluma Transit',
+                           'RV': 'Delta Breeze Transit (Rio Vista City)',
+                           'SB': 'San Francisco Bay Ferry',
+                           'SC': 'Vally Transportation Authority',
+                           'SF': 'SFMTA (Muni)',
+                           'SM': 'SamTrans',
+                           'SO': 'Sonoma County Transit',
+                           'SR': 'CityBus (Santa Rosa)',
+                           'ST': 'Soltrans',
+                           'UC': 'Union City Transit',
+                           'VC': 'City Coach',
+                           'VN': 'The Vine',
+                           'WC': 'WestCat',
+                           'WH': 'Wheels Bus',
+                           'YV': 'Yountville Trolley (Free shuttle)'
+                           }
+    # name = agencies_id_to_name[agency_id]
     return agencies_id_to_name
 
 
@@ -104,11 +103,11 @@ def get_route_trips(route_id):
 
 
 def get_all_stops_on_route(route_id):
-    trips = get_route_trips(route_id)      #<--- outputs list of trip objects in route
+    trips = get_route_trips(route_id)      # <--- outputs list of trip objects in route
     trip_ids = []
 
     for trip in trips:
-        trip_ids.append(trip.trip_id)     #putting all the trip_ids into a list
+        trip_ids.append(trip.trip_id)     # putting all the trip_ids into a list
 
     stop_times = get_stops_by_trip_ids(trip_ids)
     lat_longs_on_route = {}
@@ -531,9 +530,9 @@ def agency_to_routes_dict():
                 'id': 'HF_Day Tour'
             }
             },
-            '3D': {
-                  '3D_395': {
-                      'name': '395',
+        '3D': {
+            '3D_395': {
+                'name': '395',
                 'id': '3D_395'
             },
             '3D_300': {
@@ -601,9 +600,9 @@ def agency_to_routes_dict():
                 'id': '3D_380'
             }
             },
-            'RV': {
-                  'RV_50': {
-                      'name': '50',
+        'RV': {
+            'RV_50': {
+                'name': '50',
                 'id': 'RV_50'
             },
             'RV_52': {
@@ -611,9 +610,9 @@ def agency_to_routes_dict():
                 'id': 'RV_52'
             }
             },
-            'PE': {
-                  'PE_1T': {
-                      'name': '1T',
+        'PE': {
+            'PE_1T': {
+                'name': '1T',
                 'id': 'PE_1T'
             },
             'PE_24': {
@@ -641,15 +640,15 @@ def agency_to_routes_dict():
                 'id': 'PE_3'
             }
             },
-            'YV': {
-                  'YV_SHUTTLE': {
-                      'name': 'SHUTTLE',
+        'YV': {
+            'YV_SHUTTLE': {
+                'name': 'SHUTTLE',
                 'id': 'YV_SHUTTLE'
             }
             },
-            'EM': {
-                  'EM_POWELL': {
-                      'name': 'POWELL',
+        'EM': {
+            'EM_POWELL': {
+                'name': 'POWELL',
                 'id': 'EM_POWELL'
             },
             'EM_HOLLIS': {
@@ -661,9 +660,9 @@ def agency_to_routes_dict():
                 'id': 'EM_WATERGATE'
             }
             },
-            'AC': {
-                  'AC_386': {
-                      'name': '386',
+        'AC': {
+            'AC_386': {
+                'name': '386',
                 'id': 'AC_386'
             },
             'AC_95': {
@@ -1081,14 +1080,14 @@ def agency_to_routes_dict():
         },
         'AB':     {
             'AB_SHUTTLE': {
-              'name': 'SHUTTLE',
-              'id  ': 'AB_SHUTTLE'
+                'name': 'SHUTTLE',
+                'id  ': 'AB_SHUTTLE'
             }
         },
         'SM':     {
             'SM_24': {
-              'name': '24',
-              'id  ': 'SM_24'
+                'name': '24',
+                'id  ': 'SM_24'
             },
             'SM_43': {
                 'name': '43',
@@ -1285,8 +1284,8 @@ def agency_to_routes_dict():
         },
         'CC':     {
             'CC_36': {
-              'name': '36',
-              'id  ': 'CC_36'
+                'name': '36',
+                'id  ': 'CC_36'
             },
             'CC_91X': {
                 'name': '91X',
@@ -1439,8 +1438,8 @@ def agency_to_routes_dict():
         },
         'VN':     {
             'VN_5': {
-              'name': '5',
-              'id  ': 'VN_5'
+                'name': '5',
+                'id  ': 'VN_5'
             },
             'VN_4': {
                 'name': '4',
@@ -1493,14 +1492,14 @@ def agency_to_routes_dict():
         },
         'AM':     {
             'AM_CAPITOL': {
-              'name': 'CAPITOL',
-              'id  ': 'AM_CAPITOL'
+                'name': 'CAPITOL',
+                'id  ': 'AM_CAPITOL'
             }
         },
         'CE':     {
             'CE_WESTBOUND': {
-              'name': 'WESTBOUND',
-              'id  ': 'CE_WESTBOUND'
+                'name': 'WESTBOUND',
+                'id  ': 'CE_WESTBOUND'
             },
             'CE_EASTBOUND': {
                 'name': 'EASTBOUND',
@@ -1509,8 +1508,8 @@ def agency_to_routes_dict():
         },
         'GG':     {
             'GG_36': {
-              'name': '36',
-              'id  ': 'GG_36'
+                'name': '36',
+                'id  ': 'GG_36'
             },
             'GG_8': {
                 'name': '8',
@@ -1671,8 +1670,8 @@ def agency_to_routes_dict():
         },
         'GF':     {
             'GF_2': {
-              'name': 'SF',
-              'id  ': 'GF_2'
+                'name': 'SF',
+                'id  ': 'GF_2'
             },
             'GF_1': {
                 'name': 'LF',
@@ -1681,8 +1680,8 @@ def agency_to_routes_dict():
         },
         'AT':     {
             'AT_FERRY': {
-              'name': 'FERRY',
-              'id  ': 'AT_FERRY'
+                'name': 'FERRY',
+                'id  ': 'AT_FERRY'
             }
         },
         'AY':     {
@@ -1711,8 +1710,8 @@ def agency_to_routes_dict():
         },
         'MA':     {
             'MA_66': {
-              'name': '66',
-              'id  ': 'MA_66'
+                'name': '66',
+                'id  ': 'MA_66'
             },
             'MA_259': {
                 'name': '259',
@@ -1777,8 +1776,8 @@ def agency_to_routes_dict():
         },
         'SR':     {
             'SR_8': {
-              'name': '8',
-              'id  ': 'SR_8'
+                'name': '8',
+                'id  ': 'SR_8'
             },
             'SR_9': {
                 'name': '9',
@@ -1847,8 +1846,8 @@ def agency_to_routes_dict():
         },
         'ST':     {
             'ST_78': {
-              'name': '78',
-              'id  ': 'ST_78'
+                'name': '78',
+                'id  ': 'ST_78'
             },
             'ST_85': {
                 'name': '85',
@@ -1909,8 +1908,8 @@ def agency_to_routes_dict():
         },
         'SO':     {
             'SO_60X': {
-              'name': '60X',
-              'id  ': 'SO_60X'
+                'name': '60X',
+                'id  ': 'SO_60X'
             },
             'SO_48X': {
                 'name': '48X',
@@ -2019,8 +2018,8 @@ def agency_to_routes_dict():
         },
         'MS':     {
             'MS_Line P': {
-              'name': 'Line P',
-              'id  ': 'MS_Line P'
+                'name': 'Line P',
+                'id  ': 'MS_Line P'
             },
             'MS_EB': {
                 'name': 'EB',
@@ -2101,8 +2100,8 @@ def agency_to_routes_dict():
         },
         'SC':     {
             'SC_140': {
-              'name': '140',
-              'id  ': 'SC_140'
+                'name': '140',
+                'id  ': 'SC_140'
             },
             'SC_321': {
                 'name': '321',
@@ -2457,8 +2456,8 @@ def agency_to_routes_dict():
         },
         'SF':     {
             'SF_29': {
-              'name': '29',
-              'id  ': 'SF_29'
+                'name': '29',
+                'id  ': 'SF_29'
             },
             'SF_43': {
                 'name': '43',
@@ -2787,8 +2786,8 @@ def agency_to_routes_dict():
         },
         'UC':     {
             'UC_5': {
-              'name': '5',
-              'id  ': 'UC_5'
+                'name': '5',
+                'id  ': 'UC_5'
             },
             'UC_4': {
                 'name': '4',
@@ -2821,7 +2820,7 @@ def agency_to_routes_dict():
             'UC_8': {
                 'name': '8',
                 'id': 'UC_8'
+            }
         }
-      }
     }
     return output
