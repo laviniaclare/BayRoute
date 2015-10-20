@@ -5,5 +5,5 @@ questions.txt
 *.pyc
 bigassdict.py
 Tried
-env/*
+env*
 

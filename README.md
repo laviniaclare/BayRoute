@@ -28,7 +28,7 @@ Now you have the data, it's time to put it into a usable format.  We're going to
 
 I used a modified version of a handy piece of code called [gtfs_SQL_importer](https://github.com/cbick/gtfs_SQL_importer) written by [cbick](https://github.com/cbick).  The orginal code makes a database for each agency in the 511.org data set.  I wanted one database with all the agencies, so I had make a few modifactions to make that happen, and to avoind primary key conflicts.  The modified verson that I used is included in this repo. 
 
-1. If you haven't already, clone the BayRoute repo onto your local machine, make a [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/) and run the rquirements.txt file in your terminal (make sure you are in the correct directory and that your virtual environment is activated first, of course).
+1. If you haven't already, clone the BayRoute repo onto your local machine, make a [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/), activate it, and then run ```pip install -r rquirements.txt``` in your terminal (make sure you are in the correct directory first, of course).
 2. Make a file in your local version of the BayRoute repo called "useful-docs", and put the GTFSTdata file you got from 511.org into that file.  Also, If you don't already have PostgreSQL on your local machine you should [download](http://www.postgresql.org/download/) it now.  Make sure it's running properly and everything then go on to the next step.
 3. In your terminal run parse_511_txt.py.  This will create a PostgreSQL database with all the data in it called "transit".
 4. Open the "transit" database in PostgreSQL in your terminal (type "psql transit").
