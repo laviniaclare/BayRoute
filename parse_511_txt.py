@@ -4,6 +4,7 @@ import sys
 
 
 def generate_agency_list():
+    '''Generates dictionary containing data from GTFSTdata directory'''
     system_names = []
     system_dicts_list = []
     transit_data = os.path.join('useful-docs/', 'GTFSTdata/')
@@ -26,6 +27,9 @@ def generate_agency_list():
 
 
 def get_agency_files_sqlite():
+    '''Prints out command that creates tables in SQLite transit db
+    and loads data from GTFSTdata directory'''
+
     transit_data = os.path.join('useful-docs/', 'GTFSTdata/')
 
     print "cat gtfs_SQL_importer/src/gtfs_tables.sqlite \\"
@@ -41,6 +45,9 @@ def get_agency_files_sqlite():
 
 
 def get_agency_files_psql():
+    '''Prints out command that creates tables in PostgreSQL transit db
+     and loads data from GTFSTdata directory'''
+
     transit_data = os.path.join('useful-docs/', 'GTFSTdata/')
 
     print "cat gtfs_SQL_importer/src/gtfs_tables.sql \\"
@@ -53,6 +60,6 @@ def get_agency_files_psql():
             print agency_query
     print "gtfs_SQL_importer/src/gtfs_tables_makeindexes.sql \\gtfs_SQL_importer/src/vacuumer.sql \\"
     print "| psql transit"
-    sys.stdout.write("print HI")
+
 
 get_agency_files_psql()
