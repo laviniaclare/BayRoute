@@ -30,7 +30,7 @@ I used a modified version of a handy piece of code called [gtfs_SQL_importer](ht
 
 1. If you haven't already, clone the BayRoute repo onto your local machine, make a [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/), activate it, and then run ```pip install -r requirements.txt``` in your terminal (make sure you are in the correct directory first, of course).
 2. Make a file in your local version of the BayRoute repo called "useful-docs", and put the GTFSTdata file you got from 511.org into that file.  Also, If you don't already have PostgreSQL on your local machine you should [download](http://www.postgresql.org/download/) it now.  Make sure it's running properly and everything then go on to the next step.
-3. In your terminal run parse_511_txt.py.  This will create a PostgreSQL database with all the data in it called "transit".
+3. In your terminal run parse_511_txt.py.  This function will print out the commands you need to run to create the data base.  Copy this output, past it into your terminal and then hit "enter" to run. This will create a PostgreSQL database with all the data in it called "transit".
 4. Open the "transit" database in PostgreSQL in your terminal (type "psql transit").
 5. Copy the text from the file called "psql_indexes.sql" into your terminal.  This should create an index in the datatbase that makes some queries faster.
 
