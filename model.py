@@ -8,7 +8,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 
-ENGINE = create_engine(os.environ.get("DATABASE_URL", "sqlite:///transit.db"), echo=False)
+ENGINE = create_engine(os.environ.get("DATABASE_URL", "postgresql:///transit"), echo=False)
 Session = scoped_session(sessionmaker(bind=ENGINE, autocommit=False, autoflush=False))
 
 Base = declarative_base()
