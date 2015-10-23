@@ -19,7 +19,9 @@ Base.query = Session.query_property()
 
 
 class Agency(Base):
+
     __tablename__ = 'gtfs_agency'
+
     agency_id = Column(String(30), primary_key=True)
     agency_name = Column(String(30), nullable=False)
     agency_url = Column(String(64), nullable=False)
@@ -79,7 +81,9 @@ def get_agency_name_dict():
 
 
 class Route(Base):
+
     __tablename__ = 'gtfs_routes'
+
     route_id = Column(String(10), primary_key=True)
     route_short_name = Column(String(10), nullable=True)
     route_long_name = Column(String(30), nullable=True)
@@ -122,7 +126,9 @@ def get_all_stops_on_route(route_id):
 
 
 class Trip(Base):
+
     __tablename__ = 'gtfs_trips'
+
     trip_id = Column(Integer, primary_key=True)
     service_id = Column(Integer, nullable=True)
     trip_headsign = Column(String(10), nullable=True)
@@ -134,8 +140,10 @@ class Trip(Base):
                          primaryjoin="Route.route_id==Trip.route_id")
 
 
-class Stop_Time(Base):
+class StopTime(Base):
+
     __tablename__ = 'gtfs_stop_times'
+
     trip_id = Column(Integer, ForeignKey('gtfs_trips.trip_id'), primary_key=True)
     stop_id = Column(Integer, ForeignKey('gtfs_stops.stop_id'), primary_key=True)
     stop_sequence = Column(Integer, primary_key=True)
@@ -143,19 +151,21 @@ class Stop_Time(Base):
     departure_time = Column(String(30))
 
     trip = relationship("Trip",
-                        primaryjoin="Trip.trip_id==Stop_Time.trip_id")
+                        primaryjoin="Trip.trip_id==StopTime.trip_id")
 
     stop = relationship("Stop",
-                        primaryjoin="Stop.stop_id==Stop_Time.stop_id")
+                        primaryjoin="Stop.stop_id==StopTime.stop_id")
 
 
 def get_stops_by_trip_ids(trip_ids):
-    stop_time_objects = Session.query(Stop_Time).filter(Stop_Time.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
+    stop_time_objects = Session.query(StopTime).filter(StopTime.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
     return stop_time_objects
 
 
 class Stop(Base):
+
     __tablename__ = 'gtfs_stops'
+
     stop_id = Column(Integer, primary_key=True)
     stop_name = Column(String, nullable=True)
     stop_lat = Column(Float)
@@ -181,6 +191,7 @@ def get_stop_lat_long(stop_id):
 
 
 class Calender(Base):
+
     __tablename__ = ('gtfs_calender')
 
     service_id = Column(Integer, primary_key=True)
@@ -195,8 +206,10 @@ class Calender(Base):
     end_date = Column(Integer)
 
 
-class Fare_attributes(Base):
+class FareAttributes(Base):
+
     __tablename__ = 'gtfs_fare_attributes'
+
     fare_id = Column(Integer, primary_key=True)
     price = Column(Integer)
     currency_type = Column(String(10))
