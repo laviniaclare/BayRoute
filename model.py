@@ -7,6 +7,8 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
+from flask_sqlalchemy import SQLAlchemy
+
 
 ENGINE = create_engine(os.environ.get("DATABASE_URL", "postgresql:///transit"), echo=False)
 Session = scoped_session(sessionmaker(bind=ENGINE, autocommit=False, autoflush=False))
@@ -2837,3 +2839,11 @@ def agency_to_routes_dict():
         }
     }
     return output
+
+if __name__ == "__main__":
+    # As a convenience, if we run this module interactively, it will leave
+    # you in a state of being able to work with the database directly.
+
+    from server import app
+    connect_to_db(app)
+    print "Connected to DB."
