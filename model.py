@@ -31,55 +31,55 @@ class Agency(Base):
     agency_lang = Column(String(10), nullable=False)
     agency_phone = Column(String(20), nullable=True)
 
+    @staticmethod
+    def get_agency_routes(agency_id):
+        agency_routes = Session.query(Route).filter_by(agency_id=agency_id).all()
+        return agency_routes
 
-def get_agency_routes(agency_id):
-    agency_routes = Session.query(Route).filter_by(agency_id=agency_id).all()
-    return agency_routes
+    @staticmethod
+    def get_all_agencies():
+        all_agencies = Session.query(Agency).all()
+        return all_agencies
 
-
-def get_all_agencies():
-    all_agencies = Session.query(Agency).all()
-    return all_agencies
-
-
-def get_agency_name_dict():
-    agencies_id_to_name = {'3D': 'Tridelta Transit',
-                           'AB': 'AirBART',
-                           'AC': 'AC Transit',
-                           'AM': 'Capitol Corridor',
-                           'AT': 'Angel Island Ferry',
-                           'AY': 'American Canyon Transit (Vine Transit)',
-                           'BA': 'BART',
-                           'BG': 'Blue and Gold Fleet',
-                           'CC': 'County Connection',
-                           'CE': 'Ace Rail',
-                           'CT': 'CalTrain',
-                           'DE': 'Dumbarton Express',
-                           'EM': 'EmeryGoRound (Free shuttle)',
-                           'FS': 'FAST Transit',
-                           'GF': 'Golden Gate Ferry',
-                           'GG': 'Golden Gate Transit',
-                           'HF': 'Alcatraz Cruises',
-                           'MA': 'Marin Transit',
-                           'MS': 'Marguerite Shuttle (Free Stanford shuttle)',
-                           'PE': 'Petaluma Transit',
-                           'RV': 'Delta Breeze Transit (Rio Vista City)',
-                           'SB': 'San Francisco Bay Ferry',
-                           'SC': 'Vally Transportation Authority',
-                           'SF': 'SFMTA (Muni)',
-                           'SM': 'SamTrans',
-                           'SO': 'Sonoma County Transit',
-                           'SR': 'CityBus (Santa Rosa)',
-                           'ST': 'Soltrans',
-                           'UC': 'Union City Transit',
-                           'VC': 'City Coach',
-                           'VN': 'The Vine',
-                           'WC': 'WestCat',
-                           'WH': 'Wheels Bus',
-                           'YV': 'Yountville Trolley (Free shuttle)'
-                           }
-    # name = agencies_id_to_name[agency_id]
-    return agencies_id_to_name
+    @staticmethod
+    def get_agency_name_dict():
+        agencies_id_to_name = {'3D': 'Tridelta Transit',
+                               'AB': 'AirBART',
+                               'AC': 'AC Transit',
+                               'AM': 'Capitol Corridor',
+                               'AT': 'Angel Island Ferry',
+                               'AY': 'American Canyon Transit (Vine Transit)',
+                               'BA': 'BART',
+                               'BG': 'Blue and Gold Fleet',
+                               'CC': 'County Connection',
+                               'CE': 'Ace Rail',
+                               'CT': 'CalTrain',
+                               'DE': 'Dumbarton Express',
+                               'EM': 'EmeryGoRound (Free shuttle)',
+                               'FS': 'FAST Transit',
+                               'GF': 'Golden Gate Ferry',
+                               'GG': 'Golden Gate Transit',
+                               'HF': 'Alcatraz Cruises',
+                               'MA': 'Marin Transit',
+                               'MS': 'Marguerite Shuttle (Free Stanford shuttle)',
+                               'PE': 'Petaluma Transit',
+                               'RV': 'Delta Breeze Transit (Rio Vista City)',
+                               'SB': 'San Francisco Bay Ferry',
+                               'SC': 'Vally Transportation Authority',
+                               'SF': 'SFMTA (Muni)',
+                               'SM': 'SamTrans',
+                               'SO': 'Sonoma County Transit',
+                               'SR': 'CityBus (Santa Rosa)',
+                               'ST': 'Soltrans',
+                               'UC': 'Union City Transit',
+                               'VC': 'City Coach',
+                               'VN': 'The Vine',
+                               'WC': 'WestCat',
+                               'WH': 'Wheels Bus',
+                               'YV': 'Yountville Trolley (Free shuttle)'
+                               }
+        # name = agencies_id_to_name[agency_id]
+        return agencies_id_to_name
 
 
 class Route(Base):
@@ -95,36 +95,36 @@ class Route(Base):
     agency = relationship("Agency",
                           primaryjoin="Agency.agency_id==Route.agency_id")
 
+    @staticmethod
+    def get_route_trips(route_id):
+        trips = []
+        trip1 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=1).first()
+        trip2 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=0).first()
+        if trip1:
+            trips.append(trip1)
+        if trip2:
+            trips.append(trip2)
+        #trips=Session.query(Trip).filter_by(route_id=route_id).all()
+        return trips
 
-def get_route_trips(route_id):
-    trips = []
-    trip1 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=1).first()
-    trip2 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=0).first()
-    if trip1:
-        trips.append(trip1)
-    if trip2:
-        trips.append(trip2)
-    #trips=Session.query(Trip).filter_by(route_id=route_id).all()
-    return trips
+    @staticmethod
+    def get_all_stops_on_route(route_id):
+        trips = Route.get_route_trips(route_id)      # <--- outputs list of trip objects in route
+        trip_ids = []
 
+        for trip in trips:
+            trip_ids.append(trip.trip_id)     # putting all the trip_ids into a list
 
-def get_all_stops_on_route(route_id):
-    trips = get_route_trips(route_id)      # <--- outputs list of trip objects in route
-    trip_ids = []
+        stop_times = StopTime.get_stops_by_trip_ids(trip_ids)
+        lat_longs_on_route = {}
+        for stop_time in stop_times:
+            if not stop_time.trip_id in lat_longs_on_route.keys():
+                lat_longs_on_route[stop_time.trip_id] = []
+            lat = stop_time.stop.stop_lat
+            lon = stop_time.stop.stop_lon
+            lat_longs_on_route[stop_time.trip_id].append([lat, lon])
 
-    for trip in trips:
-        trip_ids.append(trip.trip_id)     # putting all the trip_ids into a list
-
-    stop_times = get_stops_by_trip_ids(trip_ids)
-    lat_longs_on_route = {}
-    for stop_time in stop_times:
-        if not stop_time.trip_id in lat_longs_on_route.keys():
-            lat_longs_on_route[stop_time.trip_id] = []
-        lat = stop_time.stop.stop_lat
-        lon = stop_time.stop.stop_lon
-        lat_longs_on_route[stop_time.trip_id].append([lat, lon])
-
-    return lat_longs_on_route
+        return lat_longs_on_route
 
 
 class Trip(Base):
@@ -158,10 +158,10 @@ class StopTime(Base):
     stop = relationship("Stop",
                         primaryjoin="Stop.stop_id==StopTime.stop_id")
 
-
-def get_stops_by_trip_ids(trip_ids):
-    stop_time_objects = Session.query(StopTime).filter(StopTime.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
-    return stop_time_objects
+    @staticmethod
+    def get_stops_by_trip_ids(trip_ids):
+        stop_time_objects = Session.query(StopTime).filter(StopTime.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
+        return stop_time_objects
 
 
 class Stop(Base):
@@ -174,22 +174,22 @@ class Stop(Base):
     stop_lon = Column(Float)
     zone_id = Column(Integer, nullable=True)
 
+    @staticmethod
+    def get_stop_by_id(stop_id):
+        stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
+        stop = stop[0]
+        return stop
 
-def get_stop_by_id(stop_id):
-    stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
-    stop = stop[0]
-    return stop
-
-
-def get_stop_lat_long(stop_id):
-    lat_long = []
-    stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
-    stop = stop[0]
-    lat = stop.stop_lat
-    lon = stop.stop_lon
-    lat_long.append(lat)
-    lat_long.append(lon)
-    return lat_long
+    @staticmethod
+    def get_stop_lat_long(stop_id):
+        lat_long = []
+        stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
+        stop = stop[0]
+        lat = stop.stop_lat
+        lon = stop.stop_lon
+        lat_long.append(lat)
+        lat_long.append(lon)
+        return lat_long
 
 
 class Calender(Base):
@@ -2844,6 +2844,6 @@ if __name__ == "__main__":
     # As a convenience, if we run this module interactively, it will leave
     # you in a state of being able to work with the database directly.
 
-    from server import app
-    connect_to_db(app)
+    # from routes import app
+    # connect_to_db(app)
     print "Connected to DB."
