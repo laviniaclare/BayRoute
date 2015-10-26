@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import model
 import json
-from model import Agency, Route, Trip, Calender, StopTime, Stop, FareAttributes
+from model import Agency, Route
 
 app = Flask(__name__)
 app.secret_key = '\xdd$j\x8dX\x19\xe69\x08"t/\'K\x1c\x1di"\'C\x8d*(\xd2'
