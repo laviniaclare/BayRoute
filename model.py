@@ -22,6 +22,8 @@ Base.query = Session.query_property()
 
 class Agency(Base):
 
+    """Table of all transit Agencies in 511.org database"""
+
     __tablename__ = 'gtfs_agency'
 
     agency_id = Column(String(30), primary_key=True)
@@ -84,6 +86,8 @@ class Agency(Base):
 
 class Route(Base):
 
+    """Table of all transit routes belonging to an agency"""
+
     __tablename__ = 'gtfs_routes'
 
     route_id = Column(String(10), primary_key=True)
@@ -129,6 +133,9 @@ class Route(Base):
 
 class Trip(Base):
 
+    """Trips in a route.  One trip = one direction of route loop. Can be more than
+    two trips per route to account for holiday/time of day changes to route"""
+
     __tablename__ = 'gtfs_trips'
 
     trip_id = Column(Integer, primary_key=True)
@@ -143,6 +150,8 @@ class Trip(Base):
 
 
 class StopTime(Base):
+
+    """Table times for each stop on a given trip"""
 
     __tablename__ = 'gtfs_stop_times'
 
@@ -165,6 +174,8 @@ class StopTime(Base):
 
 
 class Stop(Base):
+
+    """Table of stop locations (lat, lon) of stops"""
 
     __tablename__ = 'gtfs_stops'
 
@@ -2839,6 +2850,16 @@ def agency_to_routes_dict():
         }
     }
     return output
+
+
+# def connect_to_db(app):
+#     """Connect the database to our Flask app."""
+
+#     # Configure to use our PostgreSQL database
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///transit'
+#     # app.config['SQLALCHEMY_ECHO'] = True
+#     db.app = app
+#     db.init_app(app)
 
 if __name__ == "__main__":
     # As a convenience, if we run this module interactively, it will leave
