@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-import model
 import json
+
+import model
 from model import Agency, Route
 
 app = Flask(__name__)

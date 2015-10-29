@@ -1,11 +1,7 @@
 import os
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Float
-
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, create_engine
+from sqlalchemy.orm import sessionmaker, scoped_session, relationship
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -2867,4 +2863,4 @@ if __name__ == "__main__":
 
     # from routes import app
     # connect_to_db(app)
-    print "Connected to DB."
+    print "Model"
