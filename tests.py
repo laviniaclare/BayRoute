@@ -9,7 +9,8 @@ import routes
 class IntegrationTest(unittest.TestCase):
 
     def test_load_options(self):
-        pass
+        result = self.client.get('/')
+        self.assertIn("Show Routes!", result.data)
 
     def test_prepare_routes_for_display(self):
         pass
