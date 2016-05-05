@@ -7,6 +7,7 @@ from model import Agency, Route
 app = Flask(__name__)
 app.secret_key = '\xdd$j\x8dX\x19\xe69\x08"t/\'K\x1c\x1di"\'C\x8d*(\xd2'
 
+######  ROUTES  ######
 
 @app.route('/', methods=['GET'])
 def load_options():
@@ -23,6 +24,8 @@ def prepare_routes_for_display():
     output['routes'] = get_routes_by_id(routes_to_display)
     return jsonify(output)
 
+
+#######   HELPER FUNCTION   #######
 
 def get_routes_by_id(route_ids):
     routes_to_display = json.loads(route_ids)
