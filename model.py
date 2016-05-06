@@ -31,16 +31,25 @@ class Agency(Base):
 
     @staticmethod
     def get_agency_routes(agency_id):
+
+        """Returns all routes in a given transit agency"""
+
         agency_routes = Session.query(Route).filter_by(agency_id=agency_id).all()
         return agency_routes
 
     @staticmethod
     def get_all_agencies():
+
+        """Returns a list of all transit agencies in the 511.org database"""
+
         all_agencies = Session.query(Agency).all()
         return all_agencies
 
     @staticmethod
     def get_agency_name_dict():
+
+        """Returns a dictionary mapping transit agency ids to their common names"""
+
         agencies_id_to_name = {'3D': 'Tridelta Transit',
                                'AB': 'AirBART',
                                'AC': 'AC Transit',
