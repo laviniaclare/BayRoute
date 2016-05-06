@@ -101,7 +101,7 @@ class Route(Base):
         """Given a route id, returns 'trips' for that route"""
 
         trips = []
-        # A single route has many 'trips' (inbound, outbound, holiday 
+        # A single route has many 'trips' (inbound, outbound, holiday
         # schedule, weekend scedule, late night, etc. There is signigicant
         # overlap between all of these trips. For our purpose we only
         # need one trip going each direction.
