@@ -103,6 +103,9 @@ class Route(Base):
 
     agency = relationship("Agency",
                           primaryjoin="Agency.agency_id==Route.agency_id")
+    # Need to update code that connects to db to use this syntax
+    # agency = relationship("Agency",
+    #                       backref=db.backref("routes", order_by=route_id))
 
     @staticmethod
     def get_route_trips(route_id):
