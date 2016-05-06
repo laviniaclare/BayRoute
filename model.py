@@ -97,7 +97,14 @@ class Route(Base):
 
     @staticmethod
     def get_route_trips(route_id):
+
+        """Given a route id, returns 'trips' for that route"""
+
         trips = []
+        # A single route has many 'trips' (inbound, outbound, holiday 
+        # schedule, weekend scedule, late night, etc. There is signigicant
+        # overlap between all of these trips. For our purpose we only
+        # need one trip going each direction.
         trip1 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=1).first()
         trip2 = Session.query(Trip).filter_by(route_id=route_id).filter_by(direction_id=0).first()
         if trip1:
