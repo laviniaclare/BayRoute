@@ -128,16 +128,22 @@ class Route(Base):
 
     @staticmethod
     def get_all_stops_on_route(route_id):
-        trips = Route.get_route_trips(route_id)      # <--- outputs list of trip objects in route
-        trip_ids = [trip.trip_id for trip in trips]  # putting all the trip_ids into a list
 
-        # for trip in trips:
-        #     trip_ids.append(trip.trip_id)
+        """Given a route_id, returns all stops on that route"""
 
+        # calling get_rout_trips to get two representative trips from that route
+        # the stops on these two trips are all the stops on the given route.
+        trips = Route.get_route_trips(route_id)
+
+        # putting trip_ids from trips into a list.
+        trip_ids = [trip.trip_id for trip in trips]
+
+        # Getting stop objects for all stops our route.
         stop_times = StopTime.get_stops_by_trip_ids(trip_ids)
+
         lat_longs_on_route = {}
         for stop_time in stop_times:
-            if not stop_time.trip_id in lat_longs_on_route.keys():
+            if not stop_time.trip_id in lat_longs_on_route:
                 lat_longs_on_route[stop_time.trip_id] = []
             lat = stop_time.stop.stop_lat
             lon = stop_time.stop.stop_lon
