@@ -190,6 +190,10 @@ class StopTime(Base):
 
     @staticmethod
     def get_stops_by_trip_ids(trip_ids):
+        """
+        Given a list of trip ids, returns a list of stop time objects associated
+        with those trips.
+        """
         stop_time_objects = Session.query(StopTime).filter(StopTime.trip_id.in_(trip_ids)).join(Stop).order_by('trip_id, stop_sequence').all()
         return stop_time_objects
 
