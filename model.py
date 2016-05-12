@@ -212,12 +212,18 @@ class Stop(Base):
 
     @staticmethod
     def get_stop_by_id(stop_id):
+        """
+        Given a stop_id, returns the stop object associated with that id in the database
+        """
         stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
         stop = stop[0]
         return stop
 
     @staticmethod
     def get_stop_lat_long(stop_id):
+        """
+        Given a stop id, returns a list containing that latitude and longitute of that stop
+        """
         lat_long = []
         stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
         stop = stop[0]
