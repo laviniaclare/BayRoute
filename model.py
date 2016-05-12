@@ -233,6 +233,7 @@ class Stop(Base):
 
 
 class Calender(Base):
+    """Table with calendar info for all agencies and routes"""
 
     __tablename__ = ('gtfs_calender')
 
@@ -249,6 +250,7 @@ class Calender(Base):
 
 
 class FareAttributes(Base):
+    """Table with fare info for all routes/agencies"""
 
     __tablename__ = 'gtfs_fare_attributes'
 
@@ -260,9 +262,12 @@ class FareAttributes(Base):
 
 
 def agency_to_routes_dict():
+    """
+    Returns a dictionary mapping agency_ids to the routes and route names for those agencies
+    """
     output = {
         'FS': {
-            'F S_30': {
+            'FS_30': {
                 'name': '30',
                 'id': 'FS_30'
             },
