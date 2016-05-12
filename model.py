@@ -215,8 +215,7 @@ class Stop(Base):
         """
         Given a stop_id, returns the stop object associated with that id in the database
         """
-        stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
-        stop = stop[0]
+        stop = Session.query(Stop).filter_by(stop_id=stop_id).first()
         return stop
 
     @staticmethod
@@ -225,8 +224,7 @@ class Stop(Base):
         Given a stop id, returns a list containing that latitude and longitute of that stop
         """
         lat_long = []
-        stop = Session.query(Stop).filter_by(stop_id=stop_id).all()
-        stop = stop[0]
+        stop = Session.query(Stop).filter_by(stop_id=stop_id).first()
         lat = stop.stop_lat
         lon = stop.stop_lon
         lat_long.append(lat)
