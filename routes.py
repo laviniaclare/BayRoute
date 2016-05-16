@@ -28,13 +28,20 @@ def prepare_routes_for_display():
 #######   HELPER FUNCTION   #######
 
 def get_routes_by_id(route_ids):
+    """
+    Takes in a string representing a list of route_ids and returns a list of
+    dictionaries mapping each route to the lat/longs of each stop on that route
+    """
+    # print "\nroute_ids!! ", route_ids, "\n"
     routes_to_display = json.loads(route_ids)
-    routes_trips_to_latlongs_dict = []
+    # Will be a list of dictionaries
+    routes_trips_to_latlongs_dicts = []
+
     for route in routes_to_display:
         route_lat_longs = Route.get_all_stops_on_route(route)
-        routes_trips_to_latlongs_dict.append(route_lat_longs)
-
-    return routes_trips_to_latlongs_dict
+        routes_trips_to_latlongs_dicts.append(route_lat_longs)
+    # print routes_trips_to_latlongs_dicts
+    return routes_trips_to_latlongs_dicts
 
 
 if __name__ == '__main__':
