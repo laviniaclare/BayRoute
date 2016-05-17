@@ -1,5 +1,4 @@
 from model import Agency, Route, Trip, StopTime, Stop
-from server import get_routes_by_id
 
 import unittest
 import routes
@@ -9,6 +8,10 @@ import routes
 
 class IntegrationTest(unittest.TestCase):
 
+    def setUp(self):
+        self.client = routes.app.test_client()
+        routes.app.config['TESTING'] = True
+
     def test_load_options(self):
         result = self.client.get('/')
         self.assertIn("Show Routes!", result.data)
@@ -17,7 +20,7 @@ class IntegrationTest(unittest.TestCase):
         pass
 
     def test_get_routes_by_id_one_route(self):
-        result = get_routes_by_id("['CT_SHUTTLE']")
+        result = routes.get_routes_by_id('["CT_SHUTTLE"]')
         expected_result = [{u'5660669': [[37.3103897344, -121.8827510483], [37.3291912336, -121.9019291905]], u'5660682': [[37.3291912336, -121.9019291905], [37.3103897344, -121.8827510483]]}]
         self.assertEqual(result, expected_result)
 
