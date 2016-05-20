@@ -7,6 +7,7 @@ import routes
 
 
 class IntegrationTest(unittest.TestCase):
+    """Tests for the routes.py file to make sure all routes work as they should"""
 
     def setUp(self):
         self.client = routes.app.test_client()
