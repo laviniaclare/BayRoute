@@ -29,12 +29,11 @@ class Agency(Base):
     agency_lang = Column(String(10), nullable=False)
     agency_phone = Column(String(20), nullable=True)
 
-    @staticmethod
-    def get_agency_routes(agency_id):
+    def get_agency_routes(self):
 
         """Returns all routes in a given transit agency"""
 
-        agency_routes = Session.query(Route).filter_by(agency_id=agency_id).all()
+        agency_routes = Session.query(Route).filter_by(agency_id=self.agency_id).all()
         return agency_routes
 
     @staticmethod
@@ -259,6 +258,8 @@ class FareAttributes(Base):
     currency_type = Column(String(10))
     payment_method = Column(Integer)
     transfers = Column(Integer)
+
+############### END OF CLASS DEFINITIONS ######################
 
 
 def agency_to_routes_dict():
