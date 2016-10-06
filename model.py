@@ -1142,13 +1142,13 @@ def agency_to_routes_dict():
         'AB':     {
             'AB_SHUTTLE': {
                 'name': 'SHUTTLE',
-                'id  ': 'AB_SHUTTLE'
+                'id': 'AB_SHUTTLE'
             }
         },
         'SM':     {
             'SM_24': {
                 'name': '24',
-                'id  ': 'SM_24'
+                'id': 'SM_24'
             },
             'SM_43': {
                 'name': '43',
@@ -1346,7 +1346,7 @@ def agency_to_routes_dict():
         'CC':     {
             'CC_36': {
                 'name': '36',
-                'id  ': 'CC_36'
+                'id': 'CC_36'
             },
             'CC_91X': {
                 'name': '91X',
@@ -1500,7 +1500,7 @@ def agency_to_routes_dict():
         'VN':     {
             'VN_5': {
                 'name': '5',
-                'id  ': 'VN_5'
+                'id': 'VN_5'
             },
             'VN_4': {
                 'name': '4',
@@ -1554,13 +1554,13 @@ def agency_to_routes_dict():
         'AM':     {
             'AM_CAPITOL': {
                 'name': 'CAPITOL',
-                'id  ': 'AM_CAPITOL'
+                'id': 'AM_CAPITOL'
             }
         },
         'CE':     {
             'CE_WESTBOUND': {
                 'name': 'WESTBOUND',
-                'id  ': 'CE_WESTBOUND'
+                'id': 'CE_WESTBOUND'
             },
             'CE_EASTBOUND': {
                 'name': 'EASTBOUND',
@@ -1570,7 +1570,7 @@ def agency_to_routes_dict():
         'GG':     {
             'GG_36': {
                 'name': '36',
-                'id  ': 'GG_36'
+                'id': 'GG_36'
             },
             'GG_8': {
                 'name': '8',
@@ -1732,7 +1732,7 @@ def agency_to_routes_dict():
         'GF':     {
             'GF_2': {
                 'name': 'SF',
-                'id  ': 'GF_2'
+                'id': 'GF_2'
             },
             'GF_1': {
                 'name': 'LF',
@@ -1742,19 +1742,19 @@ def agency_to_routes_dict():
         'AT':     {
             'AT_FERRY': {
                 'name': 'FERRY',
-                'id  ': 'AT_FERRY'
+                'id': 'AT_FERRY'
             }
         },
         'AY':     {
             'AY_SHUTTLE': {
               'name': 'SHUTTLE',
-              'id  ': 'AY_SHUTTLE'
+              'id': 'AY_SHUTTLE'
             }
         },
         'CT':     {
             'CT_LOCAL': {
               'name': 'LOCAL',
-              'id  ': 'CT_LOCAL'
+              'id': 'CT_LOCAL'
             },
             'CT_BABY BULLET': {
                 'name': 'BABY BULLET',
@@ -1772,7 +1772,7 @@ def agency_to_routes_dict():
         'MA':     {
             'MA_66': {
                 'name': '66',
-                'id  ': 'MA_66'
+                'id': 'MA_66'
             },
             'MA_259': {
                 'name': '259',
@@ -1838,7 +1838,7 @@ def agency_to_routes_dict():
         'SR':     {
             'SR_8': {
                 'name': '8',
-                'id  ': 'SR_8'
+                'id': 'SR_8'
             },
             'SR_9': {
                 'name': '9',
@@ -1908,7 +1908,7 @@ def agency_to_routes_dict():
         'ST':     {
             'ST_78': {
                 'name': '78',
-                'id  ': 'ST_78'
+                'id': 'ST_78'
             },
             'ST_85': {
                 'name': '85',
@@ -1970,7 +1970,7 @@ def agency_to_routes_dict():
         'SO':     {
             'SO_60X': {
                 'name': '60X',
-                'id  ': 'SO_60X'
+                'id': 'SO_60X'
             },
             'SO_48X': {
                 'name': '48X',
@@ -2080,7 +2080,7 @@ def agency_to_routes_dict():
         'MS':     {
             'MS_Line P': {
                 'name': 'Line P',
-                'id  ': 'MS_Line P'
+                'id': 'MS_Line P'
             },
             'MS_EB': {
                 'name': 'EB',
@@ -2162,7 +2162,7 @@ def agency_to_routes_dict():
         'SC':     {
             'SC_140': {
                 'name': '140',
-                'id  ': 'SC_140'
+                'id': 'SC_140'
             },
             'SC_321': {
                 'name': '321',
@@ -2492,7 +2492,7 @@ def agency_to_routes_dict():
         'SB':     {
             'SB_Ala/Oak-SSF': {
                 'name': 'Ala/Oak-SSF',
-                'id  ': 'SB_Ala/Oak-SSF'
+                'id': 'SB_Ala/Oak-SSF'
             },
             'SB_4': {
                 'name': 'SSF-SF',
@@ -2518,7 +2518,7 @@ def agency_to_routes_dict():
         'SF':     {
             'SF_29': {
                 'name': '29',
-                'id  ': 'SF_29'
+                'id': 'SF_29'
             },
             'SF_43': {
                 'name': '43',
@@ -2848,7 +2848,7 @@ def agency_to_routes_dict():
         'UC':     {
             'UC_5': {
                 'name': '5',
-                'id  ': 'UC_5'
+                'id': 'UC_5'
             },
             'UC_4': {
                 'name': '4',
