@@ -1,4 +1,4 @@
-##What is it?
+## What is it?
 
 BayRoute is an interactive map that allows users to select and view routes from various transit systems in the Bay Area.  When a transit line is selected, the entire route is displayed on the map, helping users visualize what destinations are accessible to them via public transportation.  Includes route data for all buses, shuttles, ferries and commuter trains in the 511.org data base.  Growing up in the Bay Area I was frequently frustrated with the lack of a unified transit map.  This project was my solution to that frustration. 
 
@@ -9,13 +9,13 @@ Options can also be filtered by typing a route number in to the text search bar.
 Showing selection of all lines in the BART system.
 ![alt text](https://github.com/laviniaclare/BayRoute/blob/master/Screen-Shots/Screen%20Shot%202014-08-05%20at%205.01.48%20PM.png)
 
-##Tech Stack
+## Tech Stack
 BayRoute is built using Python with a Flask framework and a Postgresql database.  All data was acquired from 511.org. The front end was built with the Mapbox API, including the mapbox.js library.  Bootstrap multi select was used to construct the user interface. Also used: JQuery, AJAX, Jinja, HTML, and CSS.
 
-##Running the Code at Home
+## Running the Code at Home
 First off, I don't recommend trying to run this on your own computer because the database is too big to put on Github.  Which means that in order to run BayRoute from your computer you will first have to get all the data from 511.org, and then put it into a PostgreSQL database.  Which is a pain in the ass.  However, if you *really* want to play with BayRoute yourself and see what it does follow the instructions below.
 
-####Step one: Getting the Data.
+#### Step one: Getting the Data.
 1. Go download the [Static Transit Data Feed Agreement](http://511.org/developer-resources_transit-data-feed.asp) from 511.org.
 2. Print the form and fill it out
 3. Mail the form back to 511.org (the address and instructions should be on the form and on the 511.org website as well)
@@ -24,7 +24,7 @@ First off, I don't recommend trying to run this on your own computer because the
 
 Now you have the data, it's time to put it into a usable format.  We're going to use PostgreSQL.
 
-####Step two: Putting the data into a database.
+#### Step two: Putting the data into a database.
 
 I used a modified version of a handy piece of code called [gtfs_SQL_importer](https://github.com/cbick/gtfs_SQL_importer) written by [cbick](https://github.com/cbick).  The orginal code makes a database for each agency in the 511.org data set.  I wanted one database with all the agencies, so I had make a few modifactions to make that happen, and to avoind primary key conflicts.  The modified verson that I used is included in this repo. 
 
@@ -38,7 +38,7 @@ data will go.
 
 And now you should have a working database with all the correct data.  Yay!
 
-####Step three: Actually running BayRoute on your local machine
+#### Step three: Actually running BayRoute on your local machine
 
 This is the easy part. 
 
@@ -46,7 +46,7 @@ This is the easy part.
 2. Paste the address its running on into your browser.
 3. You should see something like the pictures in the "Screen-Shots" folder.
 
-####Step four: jk, there are no more steps.  Just have fun.
+#### Step four: jk, there are no more steps.  Just have fun.
 
 You can use the search bar in the menu to search for routes or agencies you are interested in seeing.  If you type in letters you will get mostly agencies.  If you type in numbers you will get all routes containing those digits.  I like to just scroll around and find transit sytems I've never heard of and check a bunch of boxes to see where they are.  If you type "free" in the search bar, you will get some of the free transit options around the Bay Area. 
 
